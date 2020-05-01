@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="stuSystemmanagerweb:war">
+    <output-path>$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>stuSystemmanagerweb</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="stuSystem-manager-web.war">
+      <element id="artifact" artifact-name="stuSystemmanagerweb:war exploded" />
+    </root>
+  </artifact>
+</component>

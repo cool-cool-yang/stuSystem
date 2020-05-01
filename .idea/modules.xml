@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-parent.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-common/stuSystemcommon.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-common/stuSystemcommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystemmanager.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystemmanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-mapper/stuSystemmanagermapper.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-mapper/stuSystemmanagermapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-pojo/stuSystemmanagerpojo.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-pojo/stuSystemmanagerpojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-service/stuSystemmanagerservice.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-service/stuSystemmanagerservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-web/stuSystemmanagerweb.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-web/stuSystemmanagerweb.iml" />
+    </modules>
+  </component>
+</project>
