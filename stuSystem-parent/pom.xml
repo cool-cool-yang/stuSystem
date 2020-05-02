@@ -22,7 +22,6 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
 
-    <junit.version>4.11</junit.version>
     <spring.version>5.2.2.RELEASE</spring.version>
     <mybatis.version>3.4.6</mybatis.version>
     <mybatis.spring.version>2.0.0</mybatis.spring.version>
@@ -30,9 +29,9 @@
     <mysql.version>8.0.15</mysql.version>
     <slf4j.version>1.7.30</slf4j.version>
     <jackson.version>2.10.1</jackson.version>
-    <c3p0.version>0.9.1.2</c3p0.version>
+    <c3p0.version>0.9.5.2</c3p0.version>
     <httpclient.version>4.5.10</httpclient.version>
-    <servlet-api.version>4.0.1</servlet-api.version>
+    <piranha-servlet-api.version>20.4.0</piranha-servlet-api.version>
     <jsp-api.version>2.3.1</jsp-api.version>
     <joda-time.version>2.10.5</joda-time.version>
     <commons-lang3.version>3.8.1</commons-lang3.version>
@@ -61,20 +60,50 @@
         <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
-          <version>${junit.version}</version>
+          <version>4.11</version>
           <scope>test</scope>
         </dependency>
 
         <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-context</artifactId>
           <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-beans</artifactId>
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
           <groupId>org.springframework</groupId>
@@ -87,10 +116,20 @@
           <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-aspects</artifactId>
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>-->
 
         <!-- Mybatis -->
         <dependency>
@@ -120,7 +159,7 @@
           <artifactId>mysql-connector-java</artifactId>
           <version>${mysql.version}</version>
         </dependency>
-
+        <!--日志-->
         <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-log4j12</artifactId>
@@ -145,8 +184,8 @@
         </dependency>
         <!-- 连接池 -->
         <dependency>
-          <groupId>c3p0</groupId>
-          <artifactId>c3p0</artifactId>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
           <version>${c3p0.version}</version>
         </dependency>
 
@@ -157,10 +196,9 @@
           <version>${httpclient.version}</version>
         </dependency>
         <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>javax-servlet-api</artifactId>
-          <version>${javax-servlet-api.version}</version>
-          <scope>provided</scope>
+            <groupId>cloud.piranha.servlet</groupId>
+            <artifactId>piranha-servlet-api</artifactId>
+            <version>${piranha-servlet-api.version}</version>
         </dependency>
         <dependency>
           <groupId>javax.servlet.jsp</groupId>
@@ -187,16 +225,8 @@
           <artifactId>commons-io</artifactId>
           <version>${commons-io.version}</version>
         </dependency>
-      <!-- JSP相关 -->
-      <!-- <dependency>
-           <groupId>javax.servlet</groupId>
-           <artifactId>jstl</artifactId>
-           <version>${jstl.version}</version>
-       </dependency>-->
-
     </dependencies>
   </dependencyManagement>
-
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -265,15 +295,15 @@
         </configuration>
       </plugin>
     </plugins>
-    <pluginManagement>
+    <!--<pluginManagement>
       <plugins>
-        <!-- 配置Tomcat插件 -->
+        &lt;!&ndash; 配置Tomcat插件 &ndash;&gt;
         <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
           <version>2.2</version>
         </plugin>
       </plugins>
-    </pluginManagement>
+    </pluginManagement>-->
   </build>
 </project>

@@ -16,6 +16,7 @@
     <module>stuSystem-manager-mapper</module>
     <module>stuSystem-manager-service</module>
     <module>stuSystem-manager-web</module>
+      <module>stuSystem-manager-mybatisGenarator</module>
   </modules>
 
   <name>stuSystem-manager</name>
