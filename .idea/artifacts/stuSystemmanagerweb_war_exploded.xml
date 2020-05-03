@@ -18,10 +18,10 @@
             <element id="module-output" name="stuSystemmanagerservice" />
           </element>
           <element id="archive" name="stuSystem-manager-mapper-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="stuSystemmanagermapper" />
+            <element id="module-output" name="stuSystem-manager-mapper" />
           </element>
           <element id="archive" name="stuSystem-manager-pojo-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="stuSystemmanagerpojo" />
+            <element id="module-output" name="stuSystem-manager-pojo" />
           </element>
           <element id="library" level="project" name="Maven: javax.persistence:javax.persistence-api:2.2" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.6" />
@@ -57,7 +57,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.2.3.RELEASE" />
           <element id="archive" name="stuSystem-common-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="stuSystemcommon" />
+            <element id="module-output" name="stuSystem-common" />
           </element>
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.10" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.12" />

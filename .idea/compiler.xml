@@ -6,15 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="stuSystem-manager-mybatisGenarator" />
+        <module name="stuSystem-common" />
         <module name="stuSystemcommon" />
         <module name="stuSystemmanagermybatisGenarator" />
         <module name="stuSystemmanagerweb" />
         <module name="stuSystemmanagerpojo" />
         <module name="stuSystemmanagermapper" />
+        <module name="stuSystem-manager-mapper" />
         <module name="stuSystemmanagerservice" />
+        <module name="stuSystem-manager-pojo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="stuSystem-common" target="1.8" />
+      <module name="stuSystem-manager" target="1.8" />
+      <module name="stuSystem-manager-mapper" target="1.8" />
+      <module name="stuSystem-manager-mybatisGenarator" target="1.8" />
+      <module name="stuSystem-manager-pojo" target="1.8" />
       <module name="stuSystem-parent" target="1.8" />
       <module name="stuSystemcommon" target="1.8" />
       <module name="stuSystemmanager" target="1.8" />
