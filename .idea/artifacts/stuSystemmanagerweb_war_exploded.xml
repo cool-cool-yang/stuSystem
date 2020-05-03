@@ -36,7 +36,7 @@
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.0" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.15" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
-          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.4" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.14" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
