@@ -1,21 +1,21 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="stuSystemmanagerweb:war exploded">
+  <artifact type="exploded-war" name="stuSystem-manager-web:war exploded">
     <output-path>$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-web/target/stuSystem-manager-web</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>stuSystemmanagerweb</module>
+        <module>stuSystem-manager-web</module>
         <packaging>war</packaging>
       </options>
     </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="stuSystemmanagerweb" />
+          <element id="module-output" name="stuSystem-manager-web" />
         </element>
         <element id="directory" name="lib">
           <element id="archive" name="stuSystem-manager-service-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="stuSystemmanagerservice" />
+            <element id="module-output" name="stuSystem-manager-service" />
           </element>
           <element id="archive" name="stuSystem-manager-mapper-1.0-SNAPSHOT.jar">
             <element id="module-output" name="stuSystem-manager-mapper" />
@@ -29,8 +29,6 @@
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.9.2" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
-          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.12.1" />
-          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.12.1" />
           <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:3.4.2" />
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:0.9.1" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.0" />
@@ -47,6 +45,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:5.2.3.RELEASE" />
@@ -68,6 +67,8 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.30" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.30" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.12.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.12.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.1" />
@@ -79,7 +80,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-web/target/stuSystem-manager-web/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="stuSystemmanagerweb/web/Web" />
+      <element id="javaee-facet-resources" facet="stuSystem-manager-web/web/Web" />
     </root>
   </artifact>
 </component>
