@@ -22,14 +22,14 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
 
-    <spring.version>5.2.2.RELEASE</spring.version>
+    <spring.version>5.2.3.RELEASE</spring.version>
     <mybatis.version>3.4.6</mybatis.version>
     <mybatis.spring.version>2.0.0</mybatis.spring.version>
     <mybatis.paginator.version>1.2.15</mybatis.paginator.version>
     <mysql.version>8.0.15</mysql.version>
     <slf4j.version>1.7.30</slf4j.version>
     <jackson.version>2.10.1</jackson.version>
-    <c3p0.version>0.9.5.2</c3p0.version>
+    <c3p0.version>0.9.5.4</c3p0.version>
     <httpclient.version>4.5.10</httpclient.version>
     <piranha-servlet-api.version>20.4.0</piranha-servlet-api.version>
     <jsp-api.version>2.3.1</jsp-api.version>

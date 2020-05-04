@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-common/stuSystem-common.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-common/stuSystem-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-mapper/stuSystem-manager-mapper.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-mapper/stuSystem-manager-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-mybatisGenarator/stuSystem-manager-mybatisGenarator.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-mybatisGenarator/stuSystem-manager-mybatisGenarator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-pojo/stuSystem-manager-pojo.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystem-manager-pojo/stuSystem-manager-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-parent.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-common/stuSystemcommon.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-common/stuSystemcommon.iml" />
       <module fileurl="file://$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystemmanager.iml" filepath="$PROJECT_DIR$/stuSystem-parent/stuSystem-manager/stuSystemmanager.iml" />
