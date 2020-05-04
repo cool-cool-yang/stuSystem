@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("aserviceImp")
+@Service("aServiceImp")
 public class AServiceImp implements AService {
     @Autowired
     private UserMapper userMapper;

@@ -143,7 +143,7 @@
         </div>
 
     </div>
-    <div id="logo" style=background:url(../../img/background.png)></div>
+    <div id="logo" style=background:url(/stuSystem/img/background.png)></div>
     <div id="left">公告</div>
     <div id="right">额外公用功能</div>
     <div id="footer">

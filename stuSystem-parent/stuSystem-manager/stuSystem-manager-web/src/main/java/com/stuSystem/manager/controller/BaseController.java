@@ -16,6 +16,7 @@ public class BaseController {
      * @param request
      * @return
      */
+    @RequestMapping("/login")
     public String goLoginGUI(HttpServletRequest request){
 
         return "login";
