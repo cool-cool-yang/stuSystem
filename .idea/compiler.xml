@@ -15,14 +15,14 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="stuSystem-parent" target="1.7" />
-      <module name="stuSystemcommon" target="1.7" />
-      <module name="stuSystemmanager" target="1.7" />
-      <module name="stuSystemmanagermapper" target="1.7" />
-      <module name="stuSystemmanagermybatisGenarator" target="1.7" />
-      <module name="stuSystemmanagerpojo" target="1.7" />
-      <module name="stuSystemmanagerservice" target="1.7" />
-      <module name="stuSystemmanagerweb" target="1.7" />
+      <module name="stuSystem-parent" target="1.8" />
+      <module name="stuSystemcommon" target="1.8" />
+      <module name="stuSystemmanager" target="1.8" />
+      <module name="stuSystemmanagermapper" target="1.8" />
+      <module name="stuSystemmanagermybatisGenarator" target="1.8" />
+      <module name="stuSystemmanagerpojo" target="1.8" />
+      <module name="stuSystemmanagerservice" target="1.8" />
+      <module name="stuSystemmanagerweb" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
