@@ -9,21 +9,21 @@
 
     <!--<link rel="stylesheet" type="text/css" href="#">-->
     <!--<script type="text/javascript" src="#">-->
-    <script type="text/javascript" src="/stuSystem/js/jquery-3.3.1.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/stuSystem/js/public.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/stuSystem/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/stuSystem/js/public.js"></script>
     <%--涉及到获取session--%>
     <script type="text/javascript">
         window.onload= function loginOrExit() {
             var user = '<%= session.getAttribute("user")%>';
             alert(user)
-            alert(user==null);
-            if(user!=null){
-
-                $(".MyIdentity").text("肥肥猪");
-            }else{
-                $(".MyIdentity").text("游客");
-                $(".logOrExtId").text("登录：");
-
+            if (!user && typeof user != "undefined" && user != 0) {
+                alert("已经登录");
+                $("#logId").css("display","none");
+                $("#extId").css("display","");
+            } else {
+                alert("还未登录");
+                $("#extId").css("display","none");
+                $("#logId").css("display","");
             }
         }
     </script>
@@ -69,7 +69,7 @@
         overflow: hidden;
         display: inline-block;
     }
-    #headerRight #logOrExtId{
+    #headerRight .logOrExt{
         width: 80px;
         margin-left: 2px;
         padding-left: 0px;
@@ -139,7 +139,8 @@
         <div id="headerRight" style="float:right;">
             <h3 style="float:left;" class="MyIdentity" id="myIdentityId" value="当前身份" >当前身份:</h3>
             <h4  style="float:left"  id="showolog1" href="">游客</h4>
-            <a href="javascript:void(0);" onclick="loginOrExit();" style="float:right;" class="logOrExt" id="logOrExtId">[登录]</a>
+            <a href="<c:url value='/user/goLoginUI.action'/>" style="float:right;" class="logOrExt" id="logId">[登录]</a>
+            <a href="javascript:void(0);"  style="float:right;display: none" class="logOrExt" id="extId">[退出]</a>
         </div>
 
     </div>

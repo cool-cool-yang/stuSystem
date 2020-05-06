@@ -69,6 +69,14 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
+  <!--<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.png</url-pattern>
@@ -80,7 +88,7 @@
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.gif</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>-->
 
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>

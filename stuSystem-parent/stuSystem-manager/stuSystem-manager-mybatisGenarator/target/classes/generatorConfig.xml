@@ -38,9 +38,11 @@
 	
 	<!-- 指定需要映射数据库表 -->
 	
-	<table tableName="user"></table>
+	<table tableName="teacher"></table>
+    <table tableName="student"></table>
+    <table tableName="announce"></table>
 	<!--<table tableName="usernet"></table>
-	<table tableName="job"></table>
+
 	<table tableName="country"></table>
 	<table tableName="province"></table>
 	<table tableName="city"></table>
