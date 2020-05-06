@@ -1,0 +1,78 @@
+/*头部的css*/
+#header{
+    height:32px;
+    background: #3B3B3B;
+    color:white;
+    text-align:justify;
+}
+#header #headerRight{
+    width: 350px;
+    height: 100%;
+    text-align:justify;
+
+}
+#headerRight #myIdentityId{
+    width: 90px;
+    margin-right: 1px;
+    padding: 2px;
+}
+#headerRight #showolog1{
+    width: 120px;
+    padding:5px;
+    margin-left: 1px;
+    text-align: left;
+    /* 内容溢出省略*/
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+}
+#headerRight .logOrExt{
+    width: 80px;
+    margin-left: 2px;
+    padding-left: 0px;
+}
+a.one:link,a.one:visited{
+    color:#ffffff;
+    text-transform: uppercase;
+    background-color: #3B3B3B;
+    font-weight:bold;
+    display: block;
+    width:120px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+a.on:hover,a.one:active{
+    color:#ffffff;
+    text-transform: uppercase;
+    background-color:red;
+    font-weight:bold;
+    display: block;
+    width:120px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+a.logOrExt:link,a.logOrExt:visited{
+    color:#ffffff;
+    text-transform: uppercase;
+    background-color: #3B3B3B;
+    font-weight:bold;
+    display: block;
+    width:120px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+a.logOrExt:hover,a.logOrExt:active{
+    color:#ffffff;
+    text-transform: uppercase;
+    background-color:red;
+    font-weight:bold;
+    display: block;
+    width:120px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+}

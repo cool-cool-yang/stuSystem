@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>超级管理员页面</title>
-    <!--<link rel="stylesheet" type="text/css" href="#">-->
+    <link rel="stylesheet" type="text/css" href="/stuSsytem/css/common.css">
     <!--<script type="text/javascript" src="#">-->
     <style>
         *{
@@ -38,7 +38,7 @@
             float:contour;
             height:39px;
             width:37px;
-            background:url(/stuSystem/img/admin.jpg) no-repeat;
+            background:url(/stuSystem/img/admin.png) no-repeat;
         }
 
         #right{
@@ -48,33 +48,11 @@
             border:2px solid #999999;
             position:absolute;
             right:0;
-            top:30px;
+            top:0px;
         }
         #footer{
             height:80px;
             background: #3B3B3B;
-        }
-        a#one:link,a#one:visited{
-            color:#ffffff;
-            text-transform: uppercase;
-            background-color: #3B3B3B;
-            font-weight:bold;
-            display: block;
-            width:120px;
-            padding: 5px;
-            text-align: center;
-            text-decoration: none;
-        }
-        a#one:hover,a#one:active{
-            color:#ffffff;
-            text-transform: uppercase;
-            background-color:red;
-            font-weight:bold;
-            display: block;
-            width:120px;
-            padding: 5px;
-            text-align: center;
-            text-decoration: none;
         }
         .naviHead2{
             font-weight: bold;
@@ -119,20 +97,8 @@
     </style>
 </head>
 <body>
+<jsp:include page="../head.jsp"/>
 <div id="container">
-    <div id="header">
-        <div id="headerLeft" style="float:left;">
-            <a href="#首 页" id="one" style="float:left;">首 页</a>
-            <a href="#聊天交流" id="one" style="float:left;">聊天交流</a>
-            <a href="#资源下载" id="one" style="float:left;">资源下载</a>
-            <a href="#个人服务" id="one" style="float:left;">个人服务</a>
-        </div>
-        <div id="headerRight" style="float:right;">
-            <h3 style="float:left;" class="MyIdentity" id="myIdentityId" value="当前身份" >当前身份:</h3>
-            <h4  style="float:left"  id="showolog1" href="">游客</h4>
-            <a href="javascript:void(0); "id="one" onclick="loginOrExit();" style="float:right;" class="logOrExt" id="logOrExtId">[登录]</a>
-        </div>
-    </div>
     <div id="left">
         <!--头像区域--><br><br><br><br><br><br><br><br><br><br><hr/><br><br>
         <h4>工号：</h4><br><br>
@@ -190,12 +156,7 @@
             <a href="#审核相关申请" id="two">审核相关申请</a>
         </div>
     </div>
-    <div id="footer">
-        <br>
-        <div style="color:#FFFFFF"><h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright © 2020 - 重庆邮电大学 计算机科学与技术学院 (+86)13340262405</h5></div>
-        <br>
-        <div style="color:#FFFFFF;float:right;"><h5>知行苑7舍408设计制作 学生管理系统Version 1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5></div>
-    </div>
 </div>
+<jsp:include page="../foot.jsp"/>
 </body>
 </html>

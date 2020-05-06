@@ -1,0 +1,11 @@
+/*尾部的css*/
+#container{
+    width:1000px;
+    margin:0 auto;
+    border:1px solid #A7F0FB;
+    position:relative;
+}
+#footer{
+    height:80px;
+    background: #3B3B3B;
+}
