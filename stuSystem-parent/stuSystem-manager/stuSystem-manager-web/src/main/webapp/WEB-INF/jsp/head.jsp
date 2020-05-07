@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.stuSystem.manager.pojo.Teacher" %>
 <link rel="stylesheet" type="text/css" href="/stuSystem/css/head.css">
 <script type="text/javascript">
     window.onload= function loginOrExit() {
-        var user = '<%= session.getAttribute("user")%>';
-        alert(user)
-        if (!user && typeof user != "undefined" && user != 0) {
+        var user = '<%= ((Teacher)session.getAttribute("admin")).getTeachName()%>';
+
+       /* alert(user);*/
+        if (user!=null && typeof user != "undefined" && user != 0) {
             alert("已经登录");
+            $('#showolog1').html(user);
             $("#logId").css("display","none");
             $("#extId").css("display","");
         } else {
@@ -28,7 +31,7 @@
         </div>
         <div id="headerRight" style="float:right;">
             <h3 style="float:left;" class="MyIdentity" id="myIdentityId" value="当前身份" >当前身份:</h3>
-            <h4  style="float:left"  id="showolog1" href="">游客</h4>
+            <h4  style="float:left"  id="showolog1" >游客</h4>
             <a href="<c:url value='/user/goLoginUI.action'/>" style="float:right;" class="logOrExt" id="logId">[登录]</a>
             <a href="javascript:void(0);"  style="float:right;display: none" class="logOrExt" id="extId">[退出]</a>
         </div>
