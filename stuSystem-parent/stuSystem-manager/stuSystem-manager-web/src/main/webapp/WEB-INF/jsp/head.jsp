@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.stuSystem.manager.custpojo.UserFactory" %>
 <%@ page import="com.stuSystem.manager.pojo.Teacher" %>
 <link rel="stylesheet" type="text/css" href="/stuSystem/css/head.css">
 <script type="text/javascript">
     window.onload= function loginOrExit() {
-        var user = '<%= ((Teacher)session.getAttribute("admin")).getTeachName()%>';
 
-       /* alert(user);*/
-        if (user!=null && typeof user != "undefined" && user != 0) {
+
+
+         var user = '<%=session.getAttribute("User") == null?null:((UserFactory.CstmUser)session.getAttribute("User")).getUsername()%>';
+            alert("用户是否存在："+user);
+        if (user!=null &&  user!='null' && typeof user != "undefined" && user != 0) {
             alert("已经登录");
             $('#showolog1').html(user);
             $("#logId").css("display","none");
@@ -24,7 +27,7 @@
 <div id="container">
     <div id="header">
         <div id="headerLeft" style="float:left;">
-            <a href="#首 页" class="one" style="float:left;">首 页</a>
+            <a href="<c:url value='/user/goMainUI.action'/>" class="one" style="float:left;">首 页</a>
             <a href="#聊天交流" class="one" style="float:left;">聊天交流</a>
             <a href="#资源下载" class="one"style="float:left;">资源下载</a>
             <a href="#个人服务" class="one" style="float:left;">个人服务</a>

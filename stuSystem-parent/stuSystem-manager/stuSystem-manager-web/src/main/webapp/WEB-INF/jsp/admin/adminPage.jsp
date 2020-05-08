@@ -6,7 +6,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>超级管理员页面</title>
-    <link rel="stylesheet" type="text/css" href="/stuSsytem/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/stuSystem/css/common.css">
+    <script type="text/javascript" src="/stuSystem/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/stuSystem/js/public.js"></script>
     <!--<script type="text/javascript" src="#">-->
     <style>
         *{
@@ -108,51 +110,51 @@
     </div>
     <div id="right">
         <div style="text-align:center;">
-            <img src="img/admin.png" style="vertical-align:middle;">
+            <img src="/stuSystem/img/admin.png" style="vertical-align:middle;">
             <span style="font-weight:bold;font-size:25px">管理员服务</span><hr/>
         </div>
         <div style="magin:3px">
-            <img src="img/import.png" style="vertical-align:middle;">
+            <img src="/stuSystem/img/import.png" style="vertical-align:middle;">
             <span style="font-weight:bold;font-size:15px">相关数据导入服务</span><hr/>
         </div>
         <div style="margin:5px;">
             <div class="navi">
-                <img src="img/import2.png" class="naviPic">
+                <img src="/stuSystem/img/import2.png" class="naviPic">
                 <a href="#单项导入学生信息" id="two">单项导入学生信息</a>
             </div>
             <div class="navi" style="float:right;margin-right:100px;">
-                <img src="img/import2.png" class="naviPic">
+                <img src="/stuSystem/img/import2.png" class="naviPic">
                 <a href="#单项导入老师信息" id="two">单项导入老师信息</a><br>
             </div>
             <div>
                 <div class="navi" >
-                    <img src="img/import2.png" class="naviPic">
+                    <img src="/stuSystem/img/import2.png" class="naviPic">
                     <a href="#批量导入学生信息" id="two">批量导入学生信息</a>
                 </div>
                 <div class="navi" style="float:right;margin-right:100px;">
-                    <img src="img/import2.png" class="naviPic">
+                    <img src="/stuSystem/img/import2.png" class="naviPic">
                     <a href="#批量导入老师信息" id="two">批量导入老师信息</a>
                 </div>
             </div>
             <div style="magin:3px"><br><br>
-                <img src="img/search.png" style="vertical-align:middle;">
+                <img src="/stuSystem/img/search.png" style="vertical-align:middle;">
                 <span style="font-weight:bold;font-size:15px">查询服务</span><hr style="height:1px;">
             </div>
             <div class="navi">
-                <img src="img/search2.png" class="naviPic">
+                <img src="/stuSystem/img/search2.png" class="naviPic">
                 <a href="#查询学生" id="two">查询学生</a>
             </div>
             <div class="navi" style="float:right;margin-right:100px;">
-                <img src="img/search2.png" class="naviPic">
+                <img src="/stuSystem/img/search2.png" class="naviPic">
                 <a href="#查询老师" id="two">查询老师</a>
             </div>
         </div>
         <div style="magin:3px"><br><br><br>
-            <img src="img/check.png" style="vertical-align:middle;">
+            <img src="/stuSystem/img/check.png" style="vertical-align:middle;">
             <span style="font-weight:bold;font-size:15px">审核申请</span><hr style="height:1px;">
         </div>
         <div class="navi">
-            <img src="img/check.png" class="naviPic">
+            <img src="/stuSystem/img/check.png" class="naviPic">
             <a href="#审核相关申请" id="two">审核相关申请</a>
         </div>
     </div>

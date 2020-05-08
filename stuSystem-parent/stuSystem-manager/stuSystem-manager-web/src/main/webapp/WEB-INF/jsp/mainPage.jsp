@@ -45,7 +45,7 @@
     border:2px solid #999999;
     position:absolute;
     right:0;
-    top:180px;
+    top:150px;
     }
     #footer{
     height:80px;

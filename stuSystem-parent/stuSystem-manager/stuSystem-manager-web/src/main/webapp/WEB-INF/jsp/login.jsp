@@ -3,38 +3,85 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>登录界面</title>
-   <%-- <link rel="stylesheet" type="text/css" href="#"/>--%>
+    <script type="text/javascript" src="/stuSystem/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/stuSystem/js/public.js"></script>
+
+
+
     <script type="text/javascript">
 
-        /* function changeImg(){
+        function changeImg() {
             var img = document.getElementById("yzmI");
-            img.src = ""+new Date().getTime();
-}
- */
-       /* 前端验证代码*/
+            img.src =  "<c:url value='/code/showYzm.action'/>"+"?"+new Date().getTime();
+        }
+        /* 前端验证代码*/
         function sumbit()
         {
+            var b=document.getElementById("identity");
+            var identity;
             var username=document.getElementById("username").value;
             var pwd=document.getElementById("pwd").value;
             var yzm=document.getElementById("yzm").value;
-            if(username.length==0)
+            document.getElementById("info1").style.display="none";
+            document.getElementById("info2").style.display="none";
+            document.getElementById("info3").style.display="none";
+            document.getElementById("info4").style.display="none";
+            for(var i=0;i<b.length;i++)
             {
-                alert("用户名不能为空！请重新输入。");
-                return false
+                if(b[i].selected&&b[i].value!="0")
+                {
+                    identity=b[i].value;
+                }
+            }
+            if(identity==null)
+            {
+                alert("请选择身份！");
+                document.getElementById("info1").style.display="block";
+                return false;
+            }
+            else if(username.length==0)
+            {
+                alert("账号不能为空！请重新输入。");
+                document.getElementById("info2").style.display="block";
+                return false;
             }
             else if(pwd.length==0 )
             {
                 alert("密码不能为空！请重新输入。");
-                return false
+                $("#info3").html("请输入密码！")
+                document.getElementById("info3").style.display="block";
+                return false;
             }
             else if(yzm.length==0)
             {
+                document.getElementById("info4").style.display="block";
                 alert("验证码不能为空！请重新输入。");
-                return false
+                return false;
             }
-            return true;
+            var flag = true;
+            $.ajax(
+                {
+                    async:false,  /*将ajax设置为同步执行*/
+                    type:'POST',
+                    url:"<c:url value='/code/CodeValidate.action'/>",
+
+                    data:{
+                        inputCode: $("#yzm").val()
+                    },
+                    success:function(result){
+                        if(result==0){
+                            $("#info4").text("请正确输入验证码");
+                            $("#info4").css("display","");
+                            flag = false;
+                        }else{
+                            $("#info4").text("请输入验证码！");
+                            $("#info4").css("display","none");
+                        }
+                    }});
+            return flag;
+
         }
     </script>
 
@@ -45,24 +92,27 @@
             padding: 0;
         }
         #wrap {
-            height: 719px;
-            width: 100%;
-            background-image: url(../../img/background.gif);
+            height: 666px;
+            width: 1050px;
+            margin:0 auto;
+            background-image: url(/stuSystem/img/loginbg.gif);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
             position: relative;
         }
         #head {
-            height: 120px;
-            width: 100%;
-            background-color: #66CCCC;
+            height: 80px;
+            width: 1050px;
+            margin:0 auto;
+            background-color: #666666;
             text-align: center;
             position: relative;
         }
         #foot {
-            width: 100%;
-            height: 126px;
+            width: 1050px;
+            height: 120px;
+            margin:0 auto;
             background-color: #CC9933;
             position: relative;
         }
@@ -205,7 +255,7 @@
             height: 24px;
             margin-left: 22px;
             vertical-align: middle;
-            background-image: url(../../img/1.png);
+            background-image: url(/stuSystem/img/1.png);
             background-repeat: no-repeat;
             vertical-align: middle;
             margin-right: 5px;
@@ -217,7 +267,7 @@
             height: 24px;
             margin-left: 22px;
             vertical-align: middle;
-            background-image: url(../../img/2.png);
+            background-image: url(/stuSystem/img/2.png);
             background-repeat: no-repeat;
             vertical-align: middle;
             margin-right: 5px;
@@ -228,7 +278,7 @@
             height: 24px;
             margin-left: 22px;
             vertical-align: middle;
-            background-image: url(../../img/3.png);
+            background-image: url(/stuSystem//img/3.png);
             background-repeat: no-repeat;
             vertical-align: middle;
             margin-right: 5px;
@@ -239,16 +289,13 @@
         }
 
 
-
     </style>
 </head>
-
-<body>
 <div class="header" id="head">
-    <div class="title">学生信息管理系统</div>
+    <div class="title">学生管理系统</div>
 
 </div>
-<form action="<c:url value='#'/>" method="post" onsubmit="return sumbit()">
+<form action="<c:url value='/user/UserLogin.action'/>" name="form1" method="post" onsubmit="return sumbit()">
     <div class="wrap" id="wrap">
         <div class="logGet">
             <!-- 头部提示信息 -->
@@ -257,19 +304,30 @@
             </div>
             <!-- 输入框 -->
             <div class="lgD">
+                请选择您的身份：<select name ="identity" id="identity">
+                <option value="0">--请选择--</option>
+                <option value="1">学生</option>
+                <option value="2">老师</option>
+            </select>
+                <font color="red"><span id="info1" style="display:none">请选择身份！</span></font>
+            </div>
+            <div class="lgD">
                 <img src="img/logName.png" width="20" height="20" alt=""/>
                 <input type="text" name="username" id="username" value="${user.username }"
-                       placeholder="输入用户名" />
+                       placeholder="输入账号"  />
+                <font color="red"><span id="info2" style="display:none">请输入账号！</span></font>
             </div>
             <div class="lgD">
                 <img src="img/logPwd.png" width="20" height="20" alt=""/>
                 <input type="password" name="pwd" id="pwd" value="${user.pwd }"
                        placeholder="输入密码" />
+                <font color="red"><span id="info3" >${err}</span></font>
             </div>
             <div class="lgE">
-                <img src="/stuManagerV2/image/a.jpg" width="100" height="50" alt="" id="yzmI" onclick="changeImg();"/>
+                <img src="/stuSystem/code/showYzm.action" width="100" height="50" alt="" id="yzmI" onclick="changeImg();"/>
                 <input type="text" name="yzm" id="yzm"
                        placeholder="输入验证码" />
+                <font color="red"><span id="info4" style="display:none">请输入验证码！</span></font>
             </div>
             <div>
                 <input type="submit" class="btns" value="登录">

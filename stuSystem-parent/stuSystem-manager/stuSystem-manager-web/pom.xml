@@ -43,7 +43,6 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
     </dependency>
-
     <!-- 连接池 -->
     <dependency>
       <groupId>com.mchange</groupId>
@@ -53,6 +52,28 @@
       <groupId>com.mchange</groupId>
       <artifactId>mchange-commons-java</artifactId>
       <version>0.2.14</version>
+    </dependency>
+    <!-- Mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>${mybatis.spring.version}</version>
+    </dependency>
+    <!--分页插件-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.1.10</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.jsqlparser</groupId>
+      <artifactId>jsqlparser</artifactId>
+      <version>3.1</version>
     </dependency>
     <!-- JSP相关 -->
     <dependency>
@@ -161,6 +182,7 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
     </dependency>
+
 
     <!--<dependency>
       <groupId>org.springframework</groupId>
