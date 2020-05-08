@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * 验证码处理控制器
+ */
 @RequestMapping("code")
 @Controller
 public class CodeController {

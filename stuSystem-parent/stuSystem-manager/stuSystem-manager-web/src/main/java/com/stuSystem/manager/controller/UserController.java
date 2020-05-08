@@ -12,9 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import sun.net.httpserver.HttpsServerImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+/**
+ * 用户通用请求处理器
+ */
 @RequestMapping("/user")
 @Controller
 public class UserController {
@@ -48,7 +53,7 @@ public class UserController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "UserLogin",method =RequestMethod.POST)
+    @RequestMapping(value = "/UserLogin",method =RequestMethod.POST)
     public ModelAndView userLogin(HttpServletRequest request,UserInfo userInfo)throws Exception{
         ModelAndView mad = new ModelAndView();
         switch (userInfo.getIdentity()){
@@ -59,7 +64,7 @@ public class UserController {
                     user.setUser(stu);
                     user.setUsername(stu.getStuName());
                     request.getSession().setAttribute("User", user);
-                    mad.setViewName("stuPage");
+                    mad.setViewName("/stu/stuPage");
                     return mad;
                 }
 
@@ -72,7 +77,7 @@ public class UserController {
                         user.setUser(teacher);
                         user.setUsername(teacher.getTeachName());
                         request.getSession().setAttribute("User",user);
-                        mad.setViewName("teacherPage");
+                        mad.setViewName("/teacher/teacherPage");
                     }else if(teacher.getTeachLevel()==3){
                         UserFactory.CstmUser user = UserFactory.createUser(UserEnum.ADMIN);
                         user.setUser(teacher);
@@ -91,12 +96,44 @@ public class UserController {
     }
 
     /**
+     * 用于跳转到指定的个人界面
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/goPersonPage",method = RequestMethod.GET)
+    public String goPersonPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserFactory.CstmUser<Object> user = (UserFactory.CstmUser<Object>)session.getAttribute("User");
+        if(user!=null && user.getUserType()==1){
+            return "/stu/stuPage";
+        }else if(user!=null && user.getUserType()==2){
+            return "/teacher/teacherPage";
+        }else if(user!=null && user.getUserType()==3){
+            return "/admin/adminPage";
+        }
+        return "login";
+    }
+    /**z
+     * 用于退出并重定向到主页
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/userExit",method=RequestMethod.GET)
+    public String userExit(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute("User");
+        return "redirect:/user/goMainUI.action";
+    }
+
+
+    /**
      * 跳转到主页
      * @return
      */
-    @RequestMapping(value = "goMainUI",method = RequestMethod.GET)
+    @RequestMapping(value = "/goMainUI",method = RequestMethod.GET)
     public String goMainPage(){
         return "mainPage";
-
     }
+
+
 }
