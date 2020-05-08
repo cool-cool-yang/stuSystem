@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.stuSystem.manager.pojo.Teacher" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -103,10 +105,10 @@
 <div id="container">
     <div id="left">
         <!--头像区域--><br><br><br><br><br><br><br><br><br><br><hr/><br><br>
-        <h4>工号：</h4><br><br>
-        <h4>姓号：</h4><br><br>
-        <h4>联系邮箱：</h4><br><br>
-        <h4>入职时间：</h4><br><br>
+        <h4>工号：${(User.user).getTeachId()}</h4><br><br>
+        <h4>姓号：${(User.user).getTeachName()}</h4><br><br>
+        <h4>联系邮箱：${(User.user).getTeachEmail()}</h4><br><br>
+        <h4>入职时间：${(User.user).teachEnsch}</h4><br><br>
     </div>
     <div id="right">
         <div style="text-align:center;">
