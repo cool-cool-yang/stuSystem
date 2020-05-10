@@ -5,7 +5,7 @@
 <head>
     <<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>登录界面</title>
-    <script type="text/javascript" src="/stuSystem/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/stuSystem/js/jquery.js"></script>
     <script type="text/javascript" src="/stuSystem/js/public.js"></script>
 
 
@@ -63,10 +63,9 @@
             var flag = true;
             $.ajax(
                 {
-                    async:false,  /*将ajax设置为同步执行*/
+                    async:false,  /*将ajax设置为同步执行,才可以获取到内部变量的值*/
                     type:'POST',
                     url:"<c:url value='/code/CodeValidate.action'/>",
-
                     data:{
                         inputCode: $("#yzm").val()
                     },

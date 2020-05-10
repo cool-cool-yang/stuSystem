@@ -8,7 +8,7 @@
     <title>首页</title>
 
     <link rel="stylesheet" type="text/css" href="/stuSystem/css/common.css">
-    <script type="text/javascript" src="/stuSystem/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/stuSystem/js/jquery.js"></script>
     <script type="text/javascript" src="/stuSystem/js/public.js"></script>
     <%--涉及到获取session--%>
     <script type="text/javascript">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.stuSystem.manager.custpojo.UserFactory" %>
+<%@ page import="com.stuSystem.manager.other.UserFactory" %>
 
 <link rel="stylesheet" type="text/css" href="/stuSystem/css/head.css">
 <script type="text/javascript">
