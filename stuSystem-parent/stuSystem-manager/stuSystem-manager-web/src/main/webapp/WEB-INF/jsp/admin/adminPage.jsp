@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>超级管理员页面</title>
     <link rel="stylesheet" type="text/css" href="/stuSystem/css/common.css">
-    <script type="text/javascript" src="/stuSystem/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/stuSystem/js/jquery.js"></script>
     <script type="text/javascript" src="/stuSystem/js/public.js"></script>
     <!--<script type="text/javascript" src="#">-->
     <style>
