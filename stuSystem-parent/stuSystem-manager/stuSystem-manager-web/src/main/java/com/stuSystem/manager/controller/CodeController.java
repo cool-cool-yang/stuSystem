@@ -1,7 +1,6 @@
 package com.stuSystem.manager.controller;
 
 import com.stuSystem.tools.ValidateCode;
-import org.apache.http.io.BufferInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

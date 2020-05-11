@@ -7,6 +7,6 @@
     <title>网站从这里进入</title>
 </head>
 <body>
-<jsp:forward page="/WEB-INF/jsp/mainPage.jsp"></jsp:forward>
+<jsp:forward page="/WEB-INF/jsp/admin/stuImport.jsp"></jsp:forward>
 </body>
 </html>
