@@ -31,32 +31,7 @@ public abstract class AbstractUserCheck<T> implements UserCheck<T> {
         maps.put("classPatter","^\\d{8}$");
         maps.put("emailPatter","^[_a-zA-Z\\d\\-\\.]+@[_a-zA-Z\\d\\-]+(\\.[_a-zA-Z\\d\\-]+)+$");
     }
-    @Override
-    public T checkOneItem(UserInfo userInfo,Class<T> clazz) throws UserException {
-        /**
-         * 逐步检查信息是否错误
-         */
-        if(!checkUserId(userInfo.getUserId())){
-                throw new UserException("学号错误");
-            }else if(!checkUsername(userInfo.getUsername())){
-                throw new UserException("名字错误");
-            }else if(!checkUsersex(userInfo.getUserSex())){
-                throw new UserException("性别错误");
-            }else if(!checkMobile(userInfo.getUserMobile())){
-                throw new UserException("电话错误");
-            }else if(!checkEmail(userInfo.getUserEmail())){
-                throw new UserException("邮箱错误");
-            }else if(!checkBirthday(userInfo.getUserBirthday())){
-                throw new UserException("生日错误");
-            }else if(!checkenSch(userInfo.getUserEnSch())){
-                throw new UserException("入学时间错误");
-            }else if(!checkOther(userInfo)){
-                throw new UserException("其他错误");
-            }
-            //信息无误后，对请求的用户信息进行封装
-            T t = createUser(userInfo,clazz);
-        return t;
-    }
+
 
     public boolean checkUserId(String userId){
         return userId.matches(maps.get("IdPatter"));
@@ -94,6 +69,32 @@ public abstract class AbstractUserCheck<T> implements UserCheck<T> {
         return true;
     }
 
+    @Override
+    public T checkOneItem(UserInfo userInfo,Class<T> clazz) throws UserException {
+        /**
+         * 逐步检查信息是否错误
+         */
+        if(!checkUserId(userInfo.getUserId())){
+            throw new UserException("学号错误");
+        }else if(!checkUsername(userInfo.getUsername())){
+            throw new UserException("名字错误");
+        }else if(!checkUsersex(userInfo.getUserSex())){
+            throw new UserException("性别错误");
+        }else if(!checkMobile(userInfo.getUserMobile())){
+            throw new UserException("电话错误");
+        }else if(!checkEmail(userInfo.getUserEmail())){
+            throw new UserException("邮箱错误");
+        }else if(!checkBirthday(userInfo.getUserBirthday())){
+            throw new UserException("生日错误");
+        }else if(!checkenSch(userInfo.getUserEnSch())){
+            throw new UserException("入学时间错误");
+        }else if(!checkOther(userInfo)){
+            throw new UserException("其他错误");
+        }
+        //信息无误后，对请求的用户信息进行封装
+        T t = createUser(userInfo,clazz);
+        return t;
+    }
     /**
      *  空实现，需要子类进行实现
      * @param in

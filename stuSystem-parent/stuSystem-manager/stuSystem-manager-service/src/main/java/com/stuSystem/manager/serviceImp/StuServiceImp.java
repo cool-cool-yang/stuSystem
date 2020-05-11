@@ -63,6 +63,12 @@ public class StuServiceImp implements StuService {
         return null;
     }
 
+    /**-
+     * 通过userInfo信息插入一条学生记录
+     * @param userInfo
+     * @return
+     * @throws UserException
+     */
     @Override
     public boolean insertOneStuItem(UserInfo userInfo) throws UserException {
         UserCheck<Student> userCheck = new StudentCheck<>();

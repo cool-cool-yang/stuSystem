@@ -5,24 +5,22 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>学生信息导入</title>
+    <title>老师信息导入</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/jquery-ui.min.css'/>">
-
     <script type="text/javascript" src="<c:url value='/js/jquery.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/public.js'/>"></script>
     <script type="text/javascript">
-
-        //判断学号是否存在。
+        //判断学号是否存在
         function stuIshas() {
             var flag = false;
             $.ajax({
                 async:false,
                 type:"POST",
-                url:"<c:url value='/student/hasStudent.action'/>",
+                url:"<c:url value='/teacher/hasTeach.action'/>",
                 data:{
-                    stuId:$("#xh").val()
+                    teacId:$("#gh").val()
                 },
                 success:function (result) {
                     if(result==1){
@@ -33,7 +31,8 @@
             //alert(flag);
             return flag;
         }
-        function checkxh(str)
+
+        function checkgh(str)
         {
             var reg1= /^\d{10}$/;
             if(!reg1.test(str))
@@ -46,15 +45,6 @@
         {
             var reg2= /^\d{11}$/;
             if(!reg2.test(str))
-            {
-                return false;
-            }
-            return true;
-        }
-        function checkbjh(str)
-        {
-            var reg3= /^\d{8}$/;
-            if(!reg3.test(str))
             {
                 return false;
             }
@@ -73,13 +63,13 @@
         }
         function sumbit1()
         {
-            var xh=document.getElementById("xh").value;
+            var gh=document.getElementById("gh").value;
             var username=document.getElementById("username").value;
-            var bjh=document.getElementById("bjh").value;
+            var zc=document.getElementById("zc").value;
             var lxfs=document.getElementById("lxfs").value;
             var email=document.getElementById("email").value;
             var sr=document.getElementById("sr").value;
-            var rxsj=document.getElementById("rxsj").value;
+            var rzsj=document.getElementById("rzsj").value;
             var a=document.getElementsByName("userSex");
             var sex;
             for(var i=0;i<a.length;i++)
@@ -97,13 +87,13 @@
             document.getElementById("warn6").style.display="none";
             document.getElementById("warn7").style.display="none";
             document.getElementById("warn8").style.display="none";
-            if(!checkxh(xh))
+            if(!checkgh(gh))
             {
-                alert("学号应为10位数字！请重新输入。");
+                alert("工号应为10位数字！请重新输入。");
                 document.getElementById("warn1").style.display="inline-block";
                 return false;
             }else if(stuIshas()){
-                alert("该学生已经存在！请重新输入。");
+                alert("该老师已经存在！请重新输入。");
                 document.getElementById("warn1").style.display="inline-block";
             }
             else if(username.length<2||username.length>20)
@@ -112,9 +102,9 @@
                 document.getElementById("warn2").style.display="inline-block";
                 return false;
             }
-            else if(!checkbjh(bjh))
+            else if(zc.length==0)
             {
-                alert("班级号应为8位数字！请重新输入。");
+                alert("请填写老师职称！");
                 document.getElementById("warn3").style.display="inline-block";
                 return false;
             }
@@ -142,9 +132,9 @@
                 document.getElementById("warn7").style.display="inline-block";
                 return false;
             }
-            else if(!checkdate(rxsj))
+            else if(!checkdate(rzsj))
             {
-                alert("入学时间日期格式不正确！请重新输入。");
+                alert("入职时间日期格式不正确！请重新输入。");
                 document.getElementById("warn8").style.display="inline-block";
                 return false;
             }
@@ -163,13 +153,13 @@
     </script>
     <style>
         #left{
-            width:393px;
+            width:386px;
             height:490px;
             background: #FFFFFF;
             border:2px solid #999999;
         }
         #right{
-            width:407px;
+            width:414px;
             height:490px;
             background: #FFFFFF;
             border:2px solid #999999;
@@ -255,28 +245,26 @@
 <div id="container">
     <div id="left">
         <div style="text-align:center;">
-            <h2>单项导入学生数据</h2><br/>
+            <h2>单项导入老师数据</h2><br/>
         </div>
-        <form action="<c:url value='/student/insertOneStu.action'/>" name="form1" method="post" onsubmit="return sumbit1()">
+        <form action="<c:url value='/teacher/insertOneTeach.action'/>" name="form1" method="post" onsubmit="return sumbit1()">
             <span id="warn1" style="color:red;font-weight:bold;display:none;">➤</span>
-            学生学号：  <input type="text" name="userId" id="xh" class="input01" value="${importStu.userId}"><span style="color:red">10位数字</span><br/><br/>
+            老师工号：  <input type="text" name="userId" id="gh" class="input01" value="${importTeach.userId}"><span style="color:red">10位数字</span><br/><br/>
             <span id="warn2" style="color:red;font-weight:bold;display:none;">➤</span>
-            学生姓名：  <input type="text" name="username" id="username" class="input01" value="${importStu.username}"><span style="color:red">2～20位</span><br/><br/>
+            老师姓名：  <input type="text" name="username" id="username" class="input01" value="${importTeach.username}"><span style="color:red">2～20位</span><br/><br/>
             <span id="warn3" style="color:red;font-weight:bold;display:none;">➤</span>
-            学生班号：  <input type="text" name="userClass" id="bjh" class="input01"  value="${importStu.userClass}"><span style="color:red">8位数字</span><br/><br/>
+            老师职称：  <input type="text" name="title" id="zc" class="input01" value="${importTeach.title}"><br/><br/>
             <span id="warn4" style="color:red;font-weight:bold;display:none;">➤</span>
             性别：<input type="radio" name="userSex" value="男">男
             <input type="radio" name="userSex" value="女">女<br/><br/>
             <span id="warn5" style="color:red;font-weight:bold;display:none;">➤</span>
-            联系方式：  <input type="text" name="userMobile" id="lxfs" class="input01" value="${importStu.userMobile}"><span style="color:red">11位数字</span><br/><br/>
+            联系方式：  <input type="text" name="userMobile" id="lxfs" class="input01"><span style="color:red" value="${importTeach.userMobile}">11位数字</span><br/><br/>
             <span id="warn6" style="color:red;font-weight:bold;display:none;">➤</span>
-            电子邮箱：  <input type="text" name="userEmail" id="email" class="input01" value="${importStu.userEmail}"><span style="color:red">xx+@xx.+xx</span><br/><br/>
+            电子邮箱：  <input type="text" name="userEmail" id="email" class="input01" value=""${importTeach.userEmail}><span style="color:red">xx+@xx.+xx</span><br/><br/>
             <span id="warn7" style="color:red;font-weight:bold;display:none;">➤</span>
-           <%-- onfocus="WdatePicker({startDate:'yyyy/MM/dd',dateFmt:'yyyy/MM/dd',isShowWeek:true})"--%>
-            出生日期：  <input type="text" name="userBirthday" id="sr" class="input02" readonly="readonly" value="${importStu.userBirthday}">
-            <span style="color:red">xxxx/xx/xx</span><br/><br/>
+            出生日期：  <input type="text" name="userBirthday" id="sr" class="input02" readonly="readonly"><span style="color:red">xxxx/xx/xx</span><br/><br/>
             <span id="warn8" style="color:red;font-weight:bold;display:none;">➤</span>
-            入学时间：  <input type="text" name="userEnSch" id="rxsj" class="input02" value="${importStu.userEnSch}"><span style="color:red">xxxx/xx/xx</span><br/><br/>
+            入职时间：  <input type="text" name="userEnSch" id="rzsj" class="input02" readonly="readonly"><span style="color:red">xxxx/xx/xx</span><br/><br/>
             <div style="text-align:center;">
                 <input type="reset" class="import" value="重置">&nbsp;
                 <input type="submit" class="import" value="提交"><br/>
@@ -286,10 +274,10 @@
     </div>
     <div id="right">
         <div style="text-align:center;">
-            <h2>批量导入学生数据</h2>
+            <h2>批量导入老师数据</h2>
             <h4 style="color:red">注：上传excel表，其后缀为.xls或.xlsx <br>表中格式参考单项导入和下图</h4><br>
-            <img src="/stuSystem/img/temp1.png"/>
-            <form action="<c:url value='/student/insertStuTable.action'/>" name="form2" method="post" enctype="multipart/form-data" onsubmit="return sumbit2()">
+            <img src="/stuSystem/img/temp1.png">
+            <form action="<c:url value='/teacher/insertTeachTable.action'/>" name="form2" method="post" enctype="multipart/form-data" onsubmit="return sumbit2()">
                 <input type="file" name="mFile" id="excel" accept=".xls,.xlsx"><br/>
                 <div style="text-align:center;">
                     <input type="submit" class="import"  value="提交"><br/>
@@ -301,6 +289,5 @@
         </div>
     </div>
 </div>
-<jsp:include page="../foot.jsp"/>
 </body>
 </html>

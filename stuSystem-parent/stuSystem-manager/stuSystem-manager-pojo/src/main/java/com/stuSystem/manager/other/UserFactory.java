@@ -85,6 +85,20 @@ public class UserFactory {
          stu.setStuReglogin(new Date());
          return stu;
      }
+    public static Teacher createTeacher(UserInfo userInfo){
+        Teacher teacher = new Teacher();
+        teacher.setTeachId(userInfo.getUserId());
+        teacher.setTeachName(userInfo.getUsername());
+        teacher.setTeachSex(userInfo.getUserSex());
+        teacher.setTeachTitle(userInfo.getTitle());
+
+        teacher.setTeachEmail(userInfo.getUserEmail());
+        teacher.setTeachMobile(userInfo.getUserMobile());
+        teacher.setTeachBirthday(userInfo.getUserBirthday());
+        teacher.setTeachEnsch(userInfo.getUserEnSch());
+         teacher.setTeachReglogin(new Date());
+        return teacher;
+    }
 
 
 

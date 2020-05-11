@@ -15,11 +15,13 @@ public class UserInfo {
     private String pwd;
     private String  userId;
     private String userClass;
+    private String title;
     private String userSex;
     private String userMobile;
     private String userEmail;
     private Date userBirthday;
     private Date userEnSch;
+
 
     public String getUserId() {
         return userId;
@@ -101,6 +103,14 @@ public class UserInfo {
         this.pwd = pwd;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -109,6 +119,7 @@ public class UserInfo {
                 ", pwd='" + pwd + '\'' +
                 ", userId='" + userId + '\'' +
                 ", userClass='" + userClass + '\'' +
+                ", title='" + title + '\'' +
                 ", userSex='" + userSex + '\'' +
                 ", userMobile='" + userMobile + '\'' +
                 ", userEmail='" + userEmail + '\'' +
