@@ -122,20 +122,20 @@
         <div style="margin:5px;">
             <div class="navi">
                 <img src="/stuSystem/img/import2.png" class="naviPic">
-                <a href="#单项导入学生信息" id="two">单项导入学生信息</a>
+                <a href="<c:url value='/admin/goStuImportUI.action'/>" id="two">单项导入学生信息</a>
             </div>
             <div class="navi" style="float:right;margin-right:100px;">
                 <img src="/stuSystem/img/import2.png" class="naviPic">
-                <a href="#单项导入老师信息" id="two">单项导入老师信息</a><br>
+                <a href="<c:url value='/admin/goTeaImporUi.action'/>" id="two">单项导入老师信息</a><br>
             </div>
             <div>
                 <div class="navi" >
                     <img src="/stuSystem/img/import2.png" class="naviPic">
-                    <a href="#批量导入学生信息" id="two">批量导入学生信息</a>
+                    <a href="<c:url value='/admin/goStuImportUI.action'/>" id="two">批量导入学生信息</a>
                 </div>
                 <div class="navi" style="float:right;margin-right:100px;">
                     <img src="/stuSystem/img/import2.png" class="naviPic">
-                    <a href="#批量导入老师信息" id="two">批量导入老师信息</a>
+                    <a href="<c:url value='/admin/goTeaImporUi.action'/>" id="two">批量导入老师信息</a>
                 </div>
             </div>
             <div style="magin:3px"><br><br>
