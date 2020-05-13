@@ -1,16 +1,15 @@
-package com.stuSystem.manager.other;
+package com.stuSystem.manager.other.usercheck;
 
 import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.myException.UserException;
-import com.stuSystem.manager.pojo.Student;
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
+import com.stuSystem.manager.other.productService.ProductService;
+import com.stuSystem.manager.other.productService.ProductTask;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.util.StringUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,13 +17,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Usercheck的抽象类，实现通用检查
  * @param <T>
  */
-public abstract class AbstractUserCheck<T> implements UserCheck<T> {
+public abstract class AbstractUserCheck<T> implements UserCheck<T>,ProductTask {
     public static Map<String,String> maps = new HashMap<>();
+    public InputStream input;
     static{
         maps.put("IdPatter","^\\d{10}$");
         maps.put("phonePatter","^[1](([3|5|8][\\d])|([4][4,5,6,7,8,9])|([6][2,5,6,7])|([7][^9])|([9][1,8,9]))[\\d]{8}$");
@@ -104,8 +108,26 @@ public abstract class AbstractUserCheck<T> implements UserCheck<T> {
      */
     @Override
     public  ExcelUser<T> checkManyItems(InputStream in,Class<T> clazz) throws UserException {
+        try{
+            Workbook wk = WorkbookFactory.create(in);   //自动获得表工作类
+            Sheet sheet = wk.getSheetAt(0);  //获得第一个工作表
+            List<T> stuList = new ArrayList<>();
 
-        return null;
+            int count=0;
+            for(Row row:sheet){
+                count++;
+                T t  = CheckOneUser(row);
+                stuList.add(t);
+            }
+            ExcelUser<T> users = new ExcelUser<>();
+            users.setTotal(count);
+            users.setSuccessDeal(stuList);
+            return users;
+        }catch(InvalidFormatException e){
+            throw new UserException("文件类型错误");
+        }catch(IOException e){
+            throw new UserException("文件打开错误");
+        }
     }
 
     /**
@@ -171,7 +193,88 @@ public abstract class AbstractUserCheck<T> implements UserCheck<T> {
         }
         return val;
     }
+
+    /**
+     * 内置生产者服务
+     */
+    public class ExcelService<T> implements ProductService<T> {
+        //阻塞队列，会自动进行阻塞
+        private volatile BlockingQueue<T> myQueue = new ArrayBlockingQueue<T>(10);
+        private volatile boolean isFinish = true;
+        private volatile int total=0;
+        private InputStream input;  /*记录总共搜索到的学生*/
+
+
+        public ExcelService(InputStream input) {
+            this.input = input;
+        }
+
+        @Override
+        public boolean isEmpty() {
+           return myQueue.isEmpty();
+        }
+
+        @Override
+        public boolean isFull() {
+            if (myQueue.size() == 10) {
+                return true;
+            }
+            return false;
+        }
+        @Override
+        public boolean isfinish() {
+            return isFinish;
+        }
+
+        @Override
+        public int totoal() {
+            return total;
+        }
+
+        @Override
+        public T get() throws InterruptedException {
+            //在队列头部最多等待30毫秒，否则放弃此次队列头元素获取。
+            return myQueue.poll(30L, TimeUnit.MILLISECONDS);
+        }
+
+        @Override
+        public boolean submit(ProductTask task) throws Exception {
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        Workbook wk = WorkbookFactory.create(input);   //自动获得表工作类
+                        Sheet sheet = wk.getSheetAt(0);  //获得第一个工作表
+                        int count=0;
+                        for (Row row : sheet) {
+                            total++;
+                            T t = (T) CheckOneUser(row);
+                            System.out.println("搜索记录："+count++);
+                            if (t != null) {
+                                myQueue.put(t);
+                            }
+                        }
+                    } catch (IOException | InvalidFormatException | InterruptedException e) {
+                        e.printStackTrace();
+                    }finally {
+                        isFinish = false;
+                        System.out.println("处理线程运行结束结束");
+                    }
+                }
+            };
+            thread.start(); /* 启动线程*/
+            return true;
+        }
+    }
+    public  ProductService<T> sumbit(InputStream input)throws Exception{
+        this.input = input;
+        ExcelService<T> service = new ExcelService<>(input);
+        service.submit(this);
+        return service;
+
+    }
     abstract boolean checkOther(UserInfo userInfo);
     protected abstract T createUser(UserInfo userInfo, Class<T> clazz);
+    abstract  T CheckOneUser(Row row);
 
 }

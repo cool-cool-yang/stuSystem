@@ -1,8 +1,9 @@
-package com.stuSystem.manager.other;
+package com.stuSystem.manager.other.usercheck;
 
 import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.myException.UserException;
+import com.stuSystem.manager.other.productService.ProductService;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
@@ -26,10 +27,17 @@ public interface UserCheck<T> {
 
     /**
      * 提供重载方法
+     * 通过多部件文件检查多条信息
      * @param mFile
      * @param clazz
      * @return
      * @throws UserException
      */
     ExcelUser<T>  checkManyItems(MultipartFile mFile, Class<T> clazz)throws UserException;
+
+    ProductService<T> sumbit(InputStream input)throws Exception;
+
+
+
+
 }

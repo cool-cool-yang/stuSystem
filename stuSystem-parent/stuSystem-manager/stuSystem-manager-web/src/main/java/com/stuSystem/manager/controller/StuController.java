@@ -76,9 +76,9 @@ public class StuController {
         try{
             ExcelUser<Student> studentExcelUser = stuService.insertStuTable(mFile);
             StringBuilder builder = new StringBuilder();
-            builder.append("总共搜索到学生记录："+studentExcelUser.getTotal()+"<br/>");
             if(studentExcelUser!=null){
-                builder.append("成功处理记录："+studentExcelUser.getSuccessDeal().size()+"<br/>");
+                builder.append("总共搜索到学生记录："+studentExcelUser.getTotal()+"<br/>");
+                builder.append("成功处理记录："+studentExcelUser.getSuccessCount()+"<br/>");
                 if(studentExcelUser.getFailImport()!=null){
                     builder.append("失败导入学生记录："+studentExcelUser.getFailImport().size()+"<br/>");
                     for(Student stu:studentExcelUser.getFailImport()){

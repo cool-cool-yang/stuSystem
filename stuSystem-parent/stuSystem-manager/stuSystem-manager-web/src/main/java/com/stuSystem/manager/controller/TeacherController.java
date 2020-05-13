@@ -74,17 +74,16 @@ public class TeacherController {
         mv.setViewName("admin/teaImport");
         List<String> strList;
         try{
-            ExcelUser<Teacher> studentExcelUser = teacherService.insertTeachTable(mFile);
+            ExcelUser<Teacher> teacherExcelUser = teacherService.insertTeachTable(mFile);
             StringBuilder builder = new StringBuilder();
-            builder.append("总共搜索到学生记录："+studentExcelUser.getTotal()+"<br/>");
-            if(studentExcelUser!=null){
-                builder.append("成功处理记录："+studentExcelUser.getSuccessDeal().size()+"<br/>");
-                if(studentExcelUser.getFailImport()!=null){
-                    builder.append("失败导入学生记录："+studentExcelUser.getFailImport().size()+"<br/>");
-                    for(Teacher teacher:studentExcelUser.getFailImport()){
+            if(teacherExcelUser!=null){
+                builder.append("总共搜索到学生记录："+teacherExcelUser.getTotal()+"<br/>");
+                builder.append("成功处理记录："+teacherExcelUser.getSuccessCount()+"<br/>");
+                if(teacherExcelUser.getFailImport()!=null){
+                    builder.append("失败导入学生记录："+teacherExcelUser.getFailImport().size()+"<br/>");
+                    for(Teacher teacher:teacherExcelUser.getFailImport()){
                         builder.append(teacher.getTeachId()+",");
                     }
-
                 }
 
             }

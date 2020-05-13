@@ -100,6 +100,51 @@ public class UserFactory {
         return teacher;
     }
 
+    /**
+     * 通过反射获得pojo类
+     * 主要限于teacher和student
+     * @param userInfo
+     * @param clazz
+     * @param <v>
+     * @return
+     */
+    public static <v> v createUser(UserInfo userInfo,Class<v> clazz){
+        try{
+           v obj = clazz.newInstance();
+            Field[] fs = clazz.getDeclaredFields();
+            for(Field f:fs){
+               if(f.getName().contains("Id")){
+                   f.set(obj,userInfo.getUserId());
+               }else if(f.getName().contains("Name")){
+                   f.set(obj,userInfo.getUsername());
+               }else if(f.getName().contains("Sex")){
+                   f.set(obj,userInfo.getUserSex());
+               }else if(f.getName().contains("Email")){
+                   f.set(obj,userInfo.getUserEmail());
+               }else if(f.getName().contains("Birthday")){
+                   f.set(obj,userInfo.getUserBirthday());
+               }else if(f.getName().contains("Mobile")){
+                   f.set(obj,userInfo.getUserMobile());
+               }else if(f.getName().contains("Class")){
+                   f.set(obj,userInfo.getUserClass());
+               }else if(f.getName().contains("Title")){
+                   f.set(obj,userInfo.getTitle());
+               }else if(f.getName().contains("Ensch")){
+                   f.set(obj,userInfo.getUserEnSch());
+               }else if(f.getName().contains("Reglogin")){
+                   f.set(obj,new Date());
+               }
+            }
+            return obj;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 
 
 

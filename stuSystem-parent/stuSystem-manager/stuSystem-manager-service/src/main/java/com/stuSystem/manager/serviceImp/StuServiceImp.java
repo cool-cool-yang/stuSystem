@@ -4,8 +4,10 @@ import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.mapper.StudentMapper;
 import com.stuSystem.manager.myException.UserException;
-import com.stuSystem.manager.other.StudentCheck;
-import com.stuSystem.manager.other.UserCheck;
+import com.stuSystem.manager.other.productService.ProductService;
+import com.stuSystem.manager.other.usercheck.AbstractUserCheck;
+import com.stuSystem.manager.other.usercheck.StudentCheck;
+import com.stuSystem.manager.other.usercheck.UserCheck;
 import com.stuSystem.manager.pojo.Student;
 import com.stuSystem.manager.pojo.StudentExample;
 import com.stuSystem.manager.service.StuService;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +82,7 @@ public class StuServiceImp implements StuService {
         try{
             int flag=0;
             if(findStudentByStuId(stu.getStuId())==null){
-                   flag  = studentMapper.insert(stu);
+                   flag  = studentMapper.insertSelective(stu);
                 System.out.println("插入成功");
             }
             if(flag==1){
@@ -104,12 +107,14 @@ public class StuServiceImp implements StuService {
      */
     @Override
     public ExcelUser<Student> insertStuTable(MultipartFile mFile) throws Exception {
-        UserCheck<Student> userCheck = new StudentCheck<>();
+       /*
+       //单线程处理过程
+       UserCheck<Student> userCheck = new StudentCheck<>();
         ExcelUser<Student> studentExcelUser = userCheck.checkManyItems(mFile,Student.class);
         List<Student> stuList = new ArrayList<>();
         for(Student stu:studentExcelUser.getSuccessDeal()){
             if(findStudentByStuId(stu.getStuId())==null){
-                int flag = studentMapper.insert(stu);
+                int flag = studentMapper.insertSelective(stu);
                 if(flag==0){
                     stuList.add(stu);
                 }
@@ -118,9 +123,42 @@ public class StuServiceImp implements StuService {
             }
         }
         studentExcelUser.setFailImport(stuList);
+        return studentExcelUser;*/
+
+        UserCheck<Student> check= new StudentCheck<>();
+        ExcelUser<Student> studentExcelUser = new ExcelUser<>();
+        List<Student> stuList = new ArrayList<>();
+        ProductService service =  check.sumbit(mFile.getInputStream());
+        System.out.println(service.isEmpty()+","+service.isfinish());
+        int successCount=0;
+
+        while(service.isfinish() || !service.isEmpty()){
+            System.out.println("开始获取数据");
+            Student stu= (Student)service.get();
+           if(stu!=null){
+               successCount++;
+               if(findStudentByStuId(stu.getStuId())==null){
+                   int flag = studentMapper.insertSelective(stu);
+                   if(flag==0){
+                       stuList.add(stu);
+                   }
+               }else{
+                   stuList.add(stu);
+               }
+           }
+        }
+        System.out.println("插入已经结束");
+        studentExcelUser.setTotal(service.totoal());
+        studentExcelUser.setSuccessCount(successCount);
+        studentExcelUser.setFailImport(stuList);
         return studentExcelUser;
+
     }
 
+    /**
+     * 用于测试
+     * @param args
+     */
     public static void main(String args[]){
         String filename = "hello.xlsx";
         int index = filename.lastIndexOf(".");
