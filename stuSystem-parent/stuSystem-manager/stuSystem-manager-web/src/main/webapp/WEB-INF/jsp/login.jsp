@@ -287,7 +287,6 @@
             width: 100%;
         }
 
-
     </style>
 </head>
 <div class="header" id="head">
