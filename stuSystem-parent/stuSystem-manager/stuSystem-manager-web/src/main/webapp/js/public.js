@@ -7,6 +7,7 @@ $(function () {
         prevButton: true,  /* 是否显示上个月按钮*/
         nextButton:true,   /* 是否显示下月按钮*/
         dateFormat:'yy-mm-dd',    /*日期格式*/
+        gotoCurrent:true,
         clearText:"清除",     /*清除日期的按钮名称*/
         closeText:"关闭",    /*关闭按钮的名称*/
         prevText:'<上月', /*上月按钮*/

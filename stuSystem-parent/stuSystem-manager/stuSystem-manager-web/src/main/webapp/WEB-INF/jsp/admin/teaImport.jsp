@@ -262,9 +262,9 @@
             <span id="warn6" style="color:red;font-weight:bold;display:none;">➤</span>
             电子邮箱：  <input type="text" name="userEmail" id="email" class="input01" value=""${importTeach.userEmail}><span style="color:red">xx+@xx.+xx</span><br/><br/>
             <span id="warn7" style="color:red;font-weight:bold;display:none;">➤</span>
-            出生日期：  <input type="text" name="userBirthday" id="sr" class="input02" readonly="readonly"><span style="color:red">xxxx/xx/xx</span><br/><br/>
+            出生日期：  <input type="text" name="userBirthday" id="sr" class="input02" ><span style="color:red">xxxx-xx-xx</span><br/><br/>
             <span id="warn8" style="color:red;font-weight:bold;display:none;">➤</span>
-            入职时间：  <input type="text" name="userEnSch" id="rzsj" class="input02" readonly="readonly"><span style="color:red">xxxx/xx/xx</span><br/><br/>
+            入职时间：  <input type="text" name="userEnSch" id="rzsj" class="input02" ><span style="color:red">xxxx-xx-xx</span><br/><br/>
             <div style="text-align:center;">
                 <input type="reset" class="import" value="重置">&nbsp;
                 <input type="submit" class="import" value="提交"><br/>
