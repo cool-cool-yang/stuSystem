@@ -144,11 +144,11 @@
             </div>
             <div class="navi">
                 <img src="/stuSystem/img/search2.png" class="naviPic">
-                <a href="#查询学生" id="two">查询学生</a>
+                <a href="<c:url value='/admin/goStuSearchUI.action'/>" id="two">查询学生</a>
             </div>
             <div class="navi" style="float:right;margin-right:100px;">
                 <img src="/stuSystem/img/search2.png" class="naviPic">
-                <a href="#查询老师" id="two">查询老师</a>
+                <a href="<c:url value='/admin/goTeaSearchUI.action'/>" id="two">查询老师</a>
             </div>
         </div>
         <div style="magin:3px"><br><br><br>

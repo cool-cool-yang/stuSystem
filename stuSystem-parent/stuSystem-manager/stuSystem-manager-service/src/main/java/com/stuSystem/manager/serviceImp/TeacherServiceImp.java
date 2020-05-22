@@ -4,7 +4,6 @@ import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.mapper.TeacherMapper;
 import com.stuSystem.manager.myException.UserException;
-import com.stuSystem.manager.other.productService.ProductService;
 import com.stuSystem.manager.other.usercheck.TeacherCheck;
 import com.stuSystem.manager.other.usercheck.UserCheck;
 import com.stuSystem.manager.pojo.Teacher;
@@ -43,7 +42,7 @@ public class TeacherServiceImp implements TeacherService {
      * @throws Exception
      */
     @Override
-    public Teacher findStudentByTeachId(String teachId) throws Exception {
+    public Teacher findTeacherByTeachId(String teachId) throws Exception {
         TeacherExample teacherExample = new TeacherExample();
         TeacherExample.Criteria criteria = teacherExample.createCriteria();
         criteria.andTeachIdEqualTo(teachId);
@@ -65,8 +64,8 @@ public class TeacherServiceImp implements TeacherService {
         Teacher teacher = userCheck.checkOneItem(userInfo,Teacher.class);
         try{
             int flag=0;
-            if(findStudentByTeachId(teacher.getTeachId())==null){
-                flag  = teacherMapper.insertSelective(teacher);
+            if(findTeacherByTeachId(teacher.getTeachId())==null){
+                flag  = teacherMapper.insert(teacher);
             }
             if(flag==1){
                 System.out.println("插入成功");
@@ -91,14 +90,12 @@ public class TeacherServiceImp implements TeacherService {
      */
     @Override
     public ExcelUser<Teacher> insertTeachTable(MultipartFile mFile) throws Exception {
-       /*
-        单列教师信息插入
         UserCheck<Teacher> userCheck = new TeacherCheck<>();
         ExcelUser<Teacher> studentExcelUser = userCheck.checkManyItems(mFile,Teacher.class);
         List<Teacher> stuList = new ArrayList<>();
         for(Teacher teacher:studentExcelUser.getSuccessDeal()){
-            if(findStudentByTeachId(teacher.getTeachId())==null){
-                int flag = teacherMapper.insertSelective(teacher);
+            if(findTeacherByTeachId(teacher.getTeachId())==null){
+                int flag = teacherMapper.insert(teacher);
                 if(flag==0){
                     stuList.add(teacher);
                 }
@@ -108,34 +105,5 @@ public class TeacherServiceImp implements TeacherService {
         }
         studentExcelUser.setFailImport(stuList);
         return studentExcelUser;
-        */
-
-        UserCheck<Teacher> check= new TeacherCheck<>();
-        ExcelUser<Teacher> teacherExcelUser = new ExcelUser<>();
-        List<Teacher> stuList = new ArrayList<>();
-        ProductService service =  check.sumbit(mFile.getInputStream());
-        System.out.println(service.isEmpty()+","+service.isfinish());
-        int successCount=0;
-
-        while(service.isfinish() || !service.isEmpty()){
-            System.out.println("开始获取数据");
-            Teacher teacher= (Teacher) service.get();
-            if(teacher!=null){
-                successCount++;
-                if(findStudentByTeachId(teacher.getTeachId())==null){
-                    int flag = teacherMapper.insertSelective(teacher);
-                    if(flag==0){
-                        stuList.add(teacher);
-                    }
-                }else{
-                    stuList.add(teacher);
-                }
-            }
-        }
-        System.out.println("插入已经结束");
-        teacherExcelUser.setTotal(service.totoal());
-        teacherExcelUser.setSuccessCount(successCount);
-        teacherExcelUser.setFailImport(stuList);
-        return teacherExcelUser;
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface TeacherService {
     Teacher findTeacher(UserInfo userInfo)throws Exception;
-    Teacher findStudentByTeachId(String teachId)throws Exception;
+    Teacher findTeacherByTeachId(String teachId)throws Exception;
     boolean insertOneTeachItem(UserInfo userInfo)throws UserException;
     ExcelUser<Teacher> insertTeachTable(MultipartFile mFile)throws Exception;
 }

@@ -55,6 +55,27 @@ public class StuController {
       }
     }
 
+    @RequestMapping(value = "/findOneStu",method = RequestMethod.POST)
+    public @ResponseBody Student findOneStuById(String  stuId) throws Exception {
+       if(stuId==null || stuId.trim().equals("")){
+           return null;
+       }else{
+           Student student = stuService.findStudentByStuId(stuId);
+           if(student!=null){
+               return student;
+           }else{
+               return null;
+           }
+       }
+
+    }
+
+    /**
+     * 插入一条学生信息
+     * @param mv
+     * @param userInfo
+     * @return
+     */
     @RequestMapping(value="/insertOneStu",method = RequestMethod.POST)
     public ModelAndView insertOneStu(ModelAndView mv,UserInfo userInfo){
         try{
@@ -68,6 +89,14 @@ public class StuController {
         mv.setViewName("admin/stuImport");
         return mv;
     }
+
+    /**
+     * 以excel表的形式插入学生信息
+     * @param mv
+     * @param mFile
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value="/insertStuTable",method = RequestMethod.POST)
     public ModelAndView insertStuTable(ModelAndView mv ,MultipartFile mFile) throws Exception {
         System.out.println("文件名称："+mFile.getName());

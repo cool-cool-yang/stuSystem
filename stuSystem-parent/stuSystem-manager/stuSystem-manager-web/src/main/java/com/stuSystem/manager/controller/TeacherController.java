@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.nio.Buffer;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -29,18 +31,20 @@ public class TeacherController {
 
     /**
      * 通过教师ID查询教师是否存在
+     * 存在：返回1
+     * 不存在：返回0
      * @param teacId
      * @return
      * @throws Exception
      */
-    @RequestMapping(value="hasTeach",method = RequestMethod.POST)
+    @RequestMapping(value="/hasTeach",method = RequestMethod.POST)
     public @ResponseBody String hasTeacher(String teacId) throws Exception {
         if(teacId==null || teacId.trim().equals("")){
             return "1";
         }
         String info="0";
         try{
-            if(teacherService.findStudentByTeachId(teacId) != null){
+            if(teacherService.findTeacherByTeachId(teacId) != null){
                 info="1";
             }else{
                 info="0";
@@ -53,6 +57,31 @@ public class TeacherController {
             return info;
         }
     }
+
+    /**
+     * 如果存在，将教师信息以json形式返回
+     * @param teacId
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findOneTeacher",method = RequestMethod.POST)
+    public  @ResponseBody Teacher findOneStuById(String teacId)throws Exception{
+        if(teacId==null || teacId.trim().equals("")){
+            return null;
+        }else{
+            Teacher teacher  = teacherService.findTeacherByTeachId(teacId);
+            return teacher;
+        }
+
+    }
+
+
+    /**
+     * 插入一条教师记录
+     * @param mv
+     * @param userInfo
+     * @return
+     */
     @RequestMapping(value="/insertOneTeach",method = RequestMethod.POST)
     public ModelAndView insertOneStu(ModelAndView mv, UserInfo userInfo){
         System.out.println("已经进入处理器");
@@ -67,6 +96,14 @@ public class TeacherController {
         mv.setViewName("admin/teaImport");
         return mv;
     }
+
+    /**
+     * 以excel表格的形式插入教师信息
+     * @param mv
+     * @param mFile
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value="/insertTeachTable",method = RequestMethod.POST)
     public ModelAndView insertStuTable(ModelAndView mv , MultipartFile mFile) throws Exception {
         System.out.println("文件名称："+mFile.getName());
@@ -93,7 +130,6 @@ public class TeacherController {
             mv.addObject("tableInfo","访问数据库异常");
         }
         return mv;
-
     }
 
 }

@@ -12,8 +12,9 @@
     <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/public.js'/>"></script>
     <script type="text/javascript">
-        //判断学号是否存在
-        function stuIshas() {
+
+        //判断工号是否存在
+        function teaIshas() {
             var flag = false;
             $.ajax({
                 async:false,
@@ -31,7 +32,6 @@
             //alert(flag);
             return flag;
         }
-
         function checkgh(str)
         {
             var reg1= /^\d{10}$/;
@@ -92,7 +92,7 @@
                 alert("工号应为10位数字！请重新输入。");
                 document.getElementById("warn1").style.display="inline-block";
                 return false;
-            }else if(stuIshas()){
+            }else if(teaIshas()){
                 alert("该老师已经存在！请重新输入。");
                 document.getElementById("warn1").style.display="inline-block";
             }

@@ -47,10 +47,24 @@ public class AdminController {
     private boolean isLogin(HttpServletRequest request){
         HttpSession session = request.getSession();
         UserFactory.CstmUser user = (UserFactory.CstmUser<Object>) session.getAttribute("User");
-        if(user.getUserType() == 3){
+        if(user!=null && user.getUserType() == 3){
             return true;
         }
         return false;
+    }
+    @RequestMapping(value = "/goStuSearchUI",method = RequestMethod.GET)
+    public String goStuSearchUI(HttpServletRequest request){
+        if(isLogin(request)){
+            return "admin/stuSearch";
+        }
+        return "login";
+    }
+    @RequestMapping(value = "/goTeaSearchUI",method = RequestMethod.GET)
+    public String goTeaSearchUI(HttpServletRequest request){
+        if(isLogin(request)){
+            return "admin/teaSearch";
+        }
+        return "login";
     }
 
 }
