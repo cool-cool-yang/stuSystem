@@ -22,3 +22,25 @@ $(function () {
     });
 });
 
+/*javascript处理时间：格式化时间戳*/
+function getDate(time) {
+    var date = new Date(parseInt(time,10));
+     var year = date.getFullYear();
+     var month = date.getMonth()+1;
+     var day = date.getDate();
+     var value = year+"-"+month+"-"+day;
+    // alert(value);
+     return value;
+
+}
+
+/*检查工号或学号格式*/
+function checkgh(str)
+{
+    var reg1= /^\d{10}$/;
+    if(!reg1.test(str))
+    {
+        return false;
+    }
+    return true;
+}

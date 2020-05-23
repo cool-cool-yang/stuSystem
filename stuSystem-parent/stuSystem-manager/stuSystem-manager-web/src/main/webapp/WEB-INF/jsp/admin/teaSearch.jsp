@@ -13,7 +13,7 @@
     <script type="text/javascript" src="<c:url value='/js/jquery-ui.min.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/public.js'/>"></script>
     <script type="text/javascript">
-        //判断工号是否存在
+        //判断工号是否存在,如果存在则显示数据
         function teaIshas() {
             var flag = false;
             $.ajax({
@@ -24,21 +24,19 @@
                     teacId:$("#gh").val()
                 },
                 success:function (data) {
-
                     if(data==''){
                         flag = false;
                     }else {
                         flag = true;
-                        var res = JSON.stringify(data);
+                        //var res = JSON.stringify(data);
                         $("#teachid").text(data.teachId);
                         $("#teachname").text(data.teachName);
                         $("#teachsex").text(data.teachSex);
                         $("#teachtitle").text(data.teachTitle);
                         $("#teachmobile").text(data.teachMobile);
                         $("#teachemail").text(data.teachEmail);
-
-                        $("#teachbirthday").text(convertDate(data.teachBirthday));
-                        $("#teachensch").text(convertDate(data.teachEnsch));
+                        $("#teachbirthday").text(getDate(data.teachBirthday));
+                        $("#teachensch").text(getDate(data.teachEnsch));
                         document.getElementById("xxss").style.display = "inline-block";
                     }
                 }
@@ -46,30 +44,7 @@
             //alert(flag)
             return flag;
         }
-        function getDateTime(date) {
-            var year = date.getFullYear();
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
-            var hh = date.getHours();
-            var mm = date.getMinutes();
-            var ss = date.getSeconds();
-            return year + "-" + month + "-" + day + " " + hh + ":" + mm + ":" + ss;
-        }
-        function  convertDate(time) {
-            var oldDate = "/Date("+time+")/";
-            var realDate = new Date(parseInt(oldDate.replace("/Date(", "").replace(")/", ""), 10));
-           return  getDateTime(realDate);
-        }
-        //检查工号格式
-        function checkgh(str)
-        {
-            var reg1= /^\d{10}$/;
-            if(!reg1.test(str))
-            {
-                return false;
-            }
-            return true;
-        }
+       /* 提交数据*/
         function submit()
         {
             var gh=document.getElementById("gh").value;

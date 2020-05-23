@@ -3,7 +3,7 @@
 <!doctype html>
 <html>
 <head>
-    <<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>登录界面</title>
     <script type="text/javascript" src="/stuSystem/js/jquery.js"></script>
     <script type="text/javascript" src="/stuSystem/js/public.js"></script>
@@ -11,7 +11,6 @@
 
 
     <script type="text/javascript">
-
         function changeImg() {
             var img = document.getElementById("yzmI");
             img.src =  "<c:url value='/code/showYzm.action'/>"+"?"+new Date().getTime();
@@ -80,16 +79,9 @@
                         }
                     }});
             return flag;
-
         }
     </script>
-
     <style type="text/css">
-
-        *{
-            margin: 0;
-            padding: 0;
-        }
         #wrap {
             height: 666px;
             width: 1050px;
@@ -234,7 +226,7 @@
             font-family: "宋体";
             color: #FFFFFF;
             position: absolute;
-            top: 50%;
+            top: 20%;
             left: 50%;
             transform: translate(-50%, -50%);  /* 使用css3的transform来实现 */
             height: 60px;
@@ -253,10 +245,9 @@
             width: 24px;
             height: 24px;
             margin-left: 22px;
-            vertical-align: middle;
             background-image: url(/stuSystem/img/1.png);
             background-repeat: no-repeat;
-            vertical-align: middle;
+
             margin-right: 5px;
         }
 
@@ -265,10 +256,8 @@
             width: 24px;
             height: 24px;
             margin-left: 22px;
-            vertical-align: middle;
             background-image: url(/stuSystem/img/2.png);
             background-repeat: no-repeat;
-            vertical-align: middle;
             margin-right: 5px;
         }
         .copyright .img .icon2 {
@@ -276,7 +265,6 @@
             width: 24px;
             height: 24px;
             margin-left: 22px;
-            vertical-align: middle;
             background-image: url(/stuSystem//img/3.png);
             background-repeat: no-repeat;
             vertical-align: middle;
@@ -336,21 +324,22 @@
     <div class="footer" id="foot">
         <div class="copyright">
             <p>Copyright © 2020 Qunar.com Inc. All Rights Reserved.</p>
-            <div class="img">
-                <i class="icon"></i><span>联系邮箱：474620125@qq.com</span>
-            </div>
+            <div class="info" style="float: left;">
+                <div class="img">
+                    <i class="icon"></i><span>联系邮箱：474620125@qq.com</span>
+                </div>
 
-            <div class="img">
-                <i class="icon1"></i><span>联系地址：重庆邮电大学</span>
-            </div>
+                <div class="img">
+                    <i class="icon1"></i><span>联系地址：重庆邮电大学</span>
+                </div>
 
-            <div class="img">
-                <i class="icon2"></i><span>联系电话：13340262405</span>
+                <div class="img">
+                    <i class="icon2"></i><span>联系电话：13340262405</span>
+                </div>
             </div>
         </div>
 
     </div>
-
 </form>
 </body>
 </html>

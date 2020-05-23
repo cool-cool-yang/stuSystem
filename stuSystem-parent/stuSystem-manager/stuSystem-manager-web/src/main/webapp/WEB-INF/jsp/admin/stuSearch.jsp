@@ -14,7 +14,7 @@
     <script type="text/javascript" src="<c:url value='/js/public.js'/>"></script>
     <script type="text/javascript">
         //判断工号是否存在
-        function teaIshas() {
+        function stuIshas() {
             var flag = false;
             $.ajax({
                 async:false,
@@ -28,7 +28,7 @@
                         flag = false;
                     }else {
                         flag = true;
-                        var res = JSON.stringify(data);
+                        //var res = JSON.stringify(data);
                         //alert(res);
                         $("#stuid").text(data.stuId);
                         $("#stuname").text(data.stuName);
@@ -37,39 +37,17 @@
                         $("#stumobile").text(data.stuMobile);
                         $("#stuemail").text(data.stuEmail);
 
-                        $("#stubirthday").text(convertDate(data.stuBirthday));
-                        $("#stuensch").text(convertDate(data.stuEnsch));
+                        $("#stubirthday").text(getDate(data.stuBirthday));
+                        $("#stuensch").text(getDate(data.stuEnsch));
                         document.getElementById("xxss").style.display = "inline-block";
                     }
                 }
             });
-            alert(flag)
+            //alert(flag)
             return flag;
         }
-        function getDateTime(date) {
-            var year = date.getFullYear();
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
-            var hh = date.getHours();
-            var mm = date.getMinutes();
-            var ss = date.getSeconds();
-            return year + "-" + month + "-" + day + " " + hh + ":" + mm + ":" + ss;
-        }
-        function  convertDate(time) {
-            var oldDate = "/Date("+time+")/";
-            var realDate = new Date(parseInt(oldDate.replace("/Date(", "").replace(")/", ""), 10));
-            return  getDateTime(realDate);
-        }
-        //检查工号格式
-        function checkgh(str)
-        {
-            var reg1= /^\d{10}$/;
-            if(!reg1.test(str))
-            {
-                return false;
-            }
-            return true;
-        }
+
+        /*提交数据 */
         function submit()
         {
             var gh=document.getElementById("xh").value;
@@ -79,7 +57,7 @@
                 alert("学号应为10位数字！请重新输入。");
                 document.getElementById("warn1").style.display="inline-block";
             }
-            else if(!teaIshas())
+            else if(!stuIshas())
             {
                 alert("该学号不存在！请重新输入.");
                 document.getElementById("warn1").style.display="inline-block";
