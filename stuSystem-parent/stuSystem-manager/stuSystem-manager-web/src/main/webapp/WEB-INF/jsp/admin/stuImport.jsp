@@ -288,7 +288,7 @@
         <div style="text-align:center;">
             <h2>批量导入学生数据</h2>
             <h4 style="color:red">注：上传excel表，其后缀为.xls或.xlsx <br>表中格式参考单项导入和下图</h4><br>
-            <img src="/stuSystem/img/temp1.png"/>
+            <img src="<c:url value='/img/temp1.png'/>"/>
             <form action="<c:url value='/student/insertStuTable.action'/>" name="form2" method="post" enctype="multipart/form-data" onsubmit="return sumbit2()">
                 <input type="file" name="mFile" id="excel" accept=".xls,.xlsx"><br/>
                 <div style="text-align:center;">

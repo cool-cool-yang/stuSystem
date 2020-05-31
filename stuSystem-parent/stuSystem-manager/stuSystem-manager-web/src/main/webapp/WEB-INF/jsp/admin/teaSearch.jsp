@@ -118,7 +118,7 @@
 <jsp:include page="../head.jsp"/>
 <div id="container">
     <div id="main">
-        <div id="juzhong"><img src="/stuSystem/img/search2.png" style="vertical-align:middle;">
+        <div id="juzhong"><img src="<c:url value='/img/search2.png'/>" style="vertical-align:middle;">
             <span style="font-weight:bold;font-size:23px">查询老师</span><hr style="height:1px;">
         </div>
             <span id="warn1" style="color:red;font-weight:bold;display:none;">➤</span>

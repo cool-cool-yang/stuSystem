@@ -20,8 +20,8 @@
 	<!-- 组件扫描器 -->
 	<context:component-scan base-package="com.stuSystem.manager.controller;" />
 	<!-- 静态资源映射器 -->
-	<!--<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
-	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>-->
+	<mvc:resources  mapping="/annoFiles/**" location="/annoFiles/"/>
+	<!--<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>-->
 	<!-- 资源解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"/>

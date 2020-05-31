@@ -86,7 +86,7 @@
             height: 666px;
             width: 1050px;
             margin:0 auto;
-            background-image: url(/stuSystem/img/loginbg.gif);
+            background-image: url(<c:url value='/img/loginbg.gif'/>);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
@@ -245,7 +245,7 @@
             width: 24px;
             height: 24px;
             margin-left: 22px;
-            background-image: url(/stuSystem/img/1.png);
+            background-image: url(<c:url value='/img/1.png'/>);
             background-repeat: no-repeat;
 
             margin-right: 5px;
@@ -256,7 +256,7 @@
             width: 24px;
             height: 24px;
             margin-left: 22px;
-            background-image: url(/stuSystem/img/2.png);
+            background-image: url(<c:url value='/img/2.png'/>);
             background-repeat: no-repeat;
             margin-right: 5px;
         }
@@ -265,7 +265,7 @@
             width: 24px;
             height: 24px;
             margin-left: 22px;
-            background-image: url(/stuSystem//img/3.png);
+            background-image: url(<c:url value='/img/3.png'/>);
             background-repeat: no-repeat;
             vertical-align: middle;
             margin-right: 5px;
@@ -298,19 +298,19 @@
                 <font color="red"><span id="info1" style="display:none">请选择身份！</span></font>
             </div>
             <div class="lgD">
-                <img src="img/logName.png" width="20" height="20" alt=""/>
+                <img src="<c:url value='/img/logName.png'/>" width="20" height="20" alt=""/>
                 <input type="text" name="username" id="username" value="${user.username }"
                        placeholder="输入账号"  />
                 <font color="red"><span id="info2" style="display:none">请输入账号！</span></font>
             </div>
             <div class="lgD">
-                <img src="img/logPwd.png" width="20" height="20" alt=""/>
+                <img src="<c:url value='/img/logPwd.png'/>" width="20" height="20" alt=""/>
                 <input type="password" name="pwd" id="pwd" value="${user.pwd }"
                        placeholder="输入密码" />
                 <font color="red"><span id="info3" >${err}</span></font>
             </div>
             <div class="lgE">
-                <img src="/stuSystem/code/showYzm.action" width="100" height="50" alt="" id="yzmI" onclick="changeImg();"/>
+                <img src="<c:url value='/code/showYzm.action'/>" width="100" height="50" alt="" id="yzmI" onclick="changeImg();"/>
                 <input type="text" name="yzm" id="yzm"
                        placeholder="输入验证码" />
                 <font color="red"><span id="info4" style="display:none">请输入验证码！</span></font>

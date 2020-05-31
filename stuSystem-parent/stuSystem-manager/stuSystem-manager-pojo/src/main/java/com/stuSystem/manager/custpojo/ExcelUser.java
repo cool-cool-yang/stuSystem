@@ -7,10 +7,10 @@ import java.util.List;
  * @param <T>
  */
 public class ExcelUser<T> {
-    private int total;
-    private int successCount;
-    private List<T> successDeal;
-    private List<T> failImport;
+    private int total;  //总共扫描到的记录数量
+    private int successCount;   //成功导入记录数量
+    private List<T> successDeal;    //成功处理的记录
+    private List<T> failImport;     //失败导入记录
 
     public int getTotal() {
         return total;

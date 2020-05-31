@@ -131,7 +131,7 @@
             <h1>公告!</h1><br>
             <c:forEach items="${annoPage.list}" var="announce">
             <div class="oneitem">
-                    &nbsp;<a class="link" href="<c:url value='#'/>?annouId=${announce.annouId}">${announce.annouName}</a>
+                    &nbsp;<a class="link" href="<c:url value='/user/announceShow.action'/>?annouId=${announce.annouId}">${announce.annouName}</a>
                     <span class="annotime"><fmt:formatDate value="${announce.annouIntime}" pattern="yyyy-MM-dd"/></span>
             </div>
             </c:forEach>

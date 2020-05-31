@@ -24,7 +24,9 @@ $(function () {
 
 /*javascript处理时间：格式化时间戳*/
 function getDate(time) {
+    /*通过时间戳实例化Date对象*/
     var date = new Date(parseInt(time,10));
+    //使用Date对象获取年月日
      var year = date.getFullYear();
      var month = date.getMonth()+1;
      var day = date.getDate();

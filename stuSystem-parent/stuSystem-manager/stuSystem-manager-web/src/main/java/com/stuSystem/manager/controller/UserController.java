@@ -1,20 +1,26 @@
 package com.stuSystem.manager.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.stuSystem.manager.other.UserFactory;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.other.UserEnum;
+import com.stuSystem.manager.pojo.Announce;
 import com.stuSystem.manager.pojo.Student;
 import com.stuSystem.manager.pojo.Teacher;
+import com.stuSystem.manager.service.AnnounceService;
 import com.stuSystem.manager.service.StuService;
 import com.stuSystem.manager.service.TeacherService;
+import com.stuSystem.tools.filesave.FileDealToLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 
 /**
  * 用户通用请求处理器
@@ -23,6 +29,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController {
 
+    @Autowired
+    private AnnounceService announceService;
     @Autowired
     private StuService stuService;
     @Autowired
@@ -124,14 +132,38 @@ public class UserController {
         return "redirect:/user/goMainUI.action";
     }
 
-
     /**
-     * 跳转到主页
+     * 跳转到通用主页
+     * @param startPage
      * @return
      */
     @RequestMapping(value = "/goMainUI",method = RequestMethod.GET)
-    public String goMainPage(){
-        return "mainPage";
+    public ModelAndView goMainPage(@RequestParam(required = false,defaultValue = "1") int startPage){
+        PageInfo<Announce> annoPage = announceService.findAnnouncePage(startPage);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("annoPage",annoPage);
+        mv.setViewName("mainPage");
+        return mv;
+    }
+
+    /**
+     * 显示公告内容
+     * @param annouId
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/announceShow",method = RequestMethod.GET)
+    public ModelAndView announceShow(int annouId) throws Exception {
+        Announce announce = announceService.findOneByAnnounceId(annouId);
+        if(announce.getAnnouLink()!=null && announce.getAnnouLink().length()>0){
+            announce.setAnnouLink("/annoFiles/"+announce.getAnnouLink());
+        }else{
+            announce.setAnnouLink("#");
+        }
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("anno",announce);
+        mv.setViewName("announceShow");
+        return mv;
     }
 
 
