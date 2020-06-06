@@ -2,11 +2,9 @@ package com.stuSystem.manager.service;
 
 import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
-import com.stuSystem.manager.myException.UserException;
+import com.stuSystem.manager.pojo.other.myException.UserException;
 import com.stuSystem.manager.pojo.Student;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 public interface StuService {
     Student findStudent(UserInfo userInfo)throws Exception;

@@ -3,11 +3,10 @@ package com.stuSystem.manager.serviceImp;
 import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.mapper.StudentMapper;
-import com.stuSystem.manager.myException.UserException;
-import com.stuSystem.manager.other.productService.ProductService;
-import com.stuSystem.manager.other.usercheck.AbstractUserCheck;
-import com.stuSystem.manager.other.usercheck.StudentCheck;
-import com.stuSystem.manager.other.usercheck.UserCheck;
+import com.stuSystem.manager.pojo.other.myException.UserException;
+import com.stuSystem.manager.pojo.other.productService.ProductService;
+import com.stuSystem.manager.pojo.other.usercheck.StudentCheck;
+import com.stuSystem.manager.pojo.other.usercheck.UserCheck;
 import com.stuSystem.manager.pojo.Student;
 import com.stuSystem.manager.pojo.StudentExample;
 import com.stuSystem.manager.service.StuService;
@@ -15,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.sound.midi.Soundbank;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 

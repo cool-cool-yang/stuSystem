@@ -3,9 +3,9 @@ package com.stuSystem.manager.serviceImp;
 import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.mapper.TeacherMapper;
-import com.stuSystem.manager.myException.UserException;
-import com.stuSystem.manager.other.usercheck.TeacherCheck;
-import com.stuSystem.manager.other.usercheck.UserCheck;
+import com.stuSystem.manager.pojo.other.myException.UserException;
+import com.stuSystem.manager.pojo.other.usercheck.TeacherCheck;
+import com.stuSystem.manager.pojo.other.usercheck.UserCheck;
 import com.stuSystem.manager.pojo.Teacher;
 import com.stuSystem.manager.pojo.TeacherExample;
 import com.stuSystem.manager.service.TeacherService;
@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service("teacherServiceImp")
 public class TeacherServiceImp implements TeacherService {
@@ -35,12 +36,6 @@ public class TeacherServiceImp implements TeacherService {
         return null;
     }
 
-    /**
-     * 通过教师工号查询教师是否存在
-     * @param teachId
-     * @return
-     * @throws Exception
-     */
     @Override
     public Teacher findTeacherByTeachId(String teachId) throws Exception {
         TeacherExample teacherExample = new TeacherExample();
@@ -52,12 +47,6 @@ public class TeacherServiceImp implements TeacherService {
         }
         return null;
     }
-    /**
-     * 插入单挑学生信息
-     * @param userInfo
-     * @return
-     * @throws UserException
-     */
     @Override
     public boolean insertOneTeachItem(UserInfo userInfo) throws UserException {
         UserCheck<Teacher> userCheck = new TeacherCheck<>();
@@ -82,12 +71,6 @@ public class TeacherServiceImp implements TeacherService {
         return false;
     }
 
-    /**
-     * 批量插入教师信息
-     * @param mFile
-     * @return
-     * @throws Exception
-     */
     @Override
     public ExcelUser<Teacher> insertTeachTable(MultipartFile mFile) throws Exception {
         UserCheck<Teacher> userCheck = new TeacherCheck<>();
@@ -105,5 +88,21 @@ public class TeacherServiceImp implements TeacherService {
         }
         studentExcelUser.setFailImport(stuList);
         return studentExcelUser;
+    }
+
+    @Override
+    public List<Map<String, String>> findAllTeachers() {
+        return teacherMapper.selectAll();
+    }
+
+
+    @Override
+    public boolean updateTeachInfo(Teacher teacher) {
+        int flag = teacherMapper.updateByPrimaryKey(teacher);
+        if(flag==1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
