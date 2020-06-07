@@ -26,9 +26,6 @@
                 $("#logId").css("display","");
             }
         };
-        function searchDo(){
-
-        }
     </script>
  <style>
     #logo{
