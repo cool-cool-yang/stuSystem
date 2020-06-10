@@ -1,6 +1,6 @@
 package com.stuSystem.manager.controller;
 
-import com.stuSystem.tools.ValidateCode;
+import com.stuSystem.commons.tools.ValidateCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

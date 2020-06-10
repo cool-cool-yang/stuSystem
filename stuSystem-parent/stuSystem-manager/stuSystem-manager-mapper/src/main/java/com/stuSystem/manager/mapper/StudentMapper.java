@@ -3,6 +3,8 @@ package com.stuSystem.manager.mapper;
 import com.stuSystem.manager.pojo.Student;
 import com.stuSystem.manager.pojo.StudentExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface StudentMapper {

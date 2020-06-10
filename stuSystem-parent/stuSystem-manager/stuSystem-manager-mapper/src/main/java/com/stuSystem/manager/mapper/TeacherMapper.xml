@@ -22,6 +22,12 @@
     <result column="teach_lastLogin" jdbcType="TIMESTAMP" property="teachLastlogin" />
     <result column="teach_regLogin" jdbcType="TIMESTAMP" property="teachReglogin" />
   </resultMap>
+
+  <!-- 自定义结果映射-->
+  <resultMap id="DefineResultMap1" type="java.util.Map">
+    <id column="teach_id" jdbcType="VARCHAR" property="teachId" />
+    <result column="teach_name" jdbcType="VARCHAR" property="teachName" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbggenerated
@@ -100,6 +106,9 @@
     teach_email, teach_title, teach_level, teach_line, teach_enSch, teach_lastLogin, 
     teach_regLogin
   </sql>
+  <sql id="Define_Column_List1">
+    teach_id, teach_name
+  </sql>
   <select id="selectByExample" parameterType="com.stuSystem.manager.pojo.TeacherExample" resultMap="BaseResultMap">
     <!--
       WARNING - @mbggenerated
@@ -118,6 +127,15 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+  </select>
+  <!--自定义查询片段-->
+  <select id="selectAll" resultMap="DefineResultMap1">
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Define_Column_List1" />
+    from teacher where teach_level='2'
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--

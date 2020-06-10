@@ -1,5 +1,7 @@
 package com.stuSystem.manager.service;
 
+import com.github.pagehelper.PageInfo;
+import com.stuSystem.manager.custpojo.CstmAnalyse;
 import com.stuSystem.manager.custpojo.CstmScores;
 import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.pojo.Scores;
@@ -16,7 +18,7 @@ public interface ScoreService {
     int insertManyItems(List<Scores> scoreList);
 
     /**
-     * 查血某门授课的所有学生的分数信息
+     * 查询某门授课的所有学生的分数信息
      * @param tcId
      * @return
      */
@@ -37,6 +39,15 @@ public interface ScoreService {
      */
     ExcelUser<Scores> updateStuGrasWithExcel(String scoresStuid, MultipartFile mFile);
 
+    /**
+     * 分页查询学生信息
+     * 内部混合信息实体
+     * @param start
+     * @return
+     */
+    PageInfo<CstmScores> findScoresPage(int start,String stuId);
 
+
+    CstmAnalyse findOneStuAnalyseByStuId(String stuId);
 
 }

@@ -1,20 +1,24 @@
 package com.stuSystem.manager.controller;
 
-import com.stuSystem.manager.custpojo.ExcelUser;
-import com.stuSystem.manager.custpojo.UserInfo;
-import com.stuSystem.manager.myException.UserException;
+import com.github.pagehelper.PageInfo;
+import com.stuSystem.manager.custpojo.*;
+import com.stuSystem.manager.pojo.Scores;
+import com.stuSystem.manager.pojo.other.UserFactory;
+import com.stuSystem.manager.pojo.other.myException.UserException;
 import com.stuSystem.manager.pojo.Student;
+import com.stuSystem.manager.service.ScoreService;
 import com.stuSystem.manager.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import java.nio.Buffer;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -28,6 +32,9 @@ public class StuController {
     @Autowired
     private StuService stuService;
 
+
+    @Autowired
+    private ScoreService scoreService;
     /**
      * JAX请求：通过学号检查学生是否存在：
      * 使用json返回结果："1"表示存在，"1"表示不存在
@@ -124,6 +131,98 @@ public class StuController {
         }
         mv.setViewName("admin/stuImport");
         return mv;
-
     }
+
+    /**
+     * 跳转到学生信息修改页面
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/goModifyInfoUI",method = RequestMethod.GET)
+    public String goModifyInfoUI(HttpServletRequest request){
+        if(isLogin(request)){
+            return "stu/stuchangeInfo";
+        }else{
+            return "login";
+        }
+    }
+
+    /**
+     * 修改学生信息
+     * 失败：转发到提示页面
+     * 成功：跳转到登录界面
+     * @param request
+     * @param newSinfo
+     * @return
+     */
+    @RequestMapping(value = "/ModifyTeaInfo",method = RequestMethod.POST)
+    public ModelAndView ModifyTeaInfo(HttpServletRequest request,Student newSinfo){
+        /*
+        重置实体Bean
+         */
+        HttpSession session = request.getSession();
+        UserFactory.CstmUser<Student> user  = (UserFactory.CstmUser<Student>)session.getAttribute("User");
+        Student oldS = user.getUser();
+        oldS.setStuPwd(newSinfo.getStuPwd());
+        oldS.setStuMobile(newSinfo.getStuMobile());
+        oldS.setStuEmail(newSinfo.getStuEmail());
+
+        /*
+        更新教师信息，移除session中的user属性
+         */
+        ModelAndView mv = new ModelAndView();
+        boolean isSuccess = stuService.updateStuInfo(oldS);
+        if(isSuccess){
+            session.removeAttribute("User");
+            mv.setViewName("login");
+        }else{
+            mv.addObject("msg","信息修改失败");
+            mv.setViewName("metion");
+        }
+        return mv;
+    }
+
+    @RequestMapping(value = "/gradeShow",method = RequestMethod.GET)
+    public ModelAndView gradeShow(@RequestParam(required = false,defaultValue = "1") int startPage,
+                                  HttpServletRequest request){
+        UserFactory.CstmUser<Student> user = (UserFactory.CstmUser<Student>) request.getSession().getAttribute("User");
+        PageInfo<CstmScores> pages = scoreService.findScoresPage(startPage,user.getUser().getStuId());
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("Pages",pages);
+        mv.setViewName("stu/gradeshow");
+        return mv;
+    }
+
+
+    @RequestMapping(value = "/gradeAnalyse",method = RequestMethod.GET)
+    public ModelAndView gradeAnalyse(HttpServletRequest request){
+        ModelAndView mv = new ModelAndView();
+       if(isLogin(request)){
+           UserFactory.CstmUser<Student> loginUser =
+                   (UserFactory.CstmUser<Student>) request.getSession().getAttribute("User");
+           CstmAnalyse cstmAnalyse = scoreService.findOneStuAnalyseByStuId(loginUser.getUser().getStuId());
+           System.out.println(cstmAnalyse);
+           mv.addObject("ana",cstmAnalyse);
+           mv.setViewName("stu/gradeAnalyse");
+           return mv;
+        }else{
+            mv.setViewName("login");
+
+        }
+        return mv;
+    }
+    /**
+     * 判断是否登陆
+     * @param request
+     * @return
+     */
+    private boolean isLogin(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserFactory.CstmUser user = (UserFactory.CstmUser<Object>) session.getAttribute("User");
+        if(user!=null && user.getUserType() == 1){
+            return true;
+        }
+        return false;
+    }
+
 }

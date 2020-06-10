@@ -1,8 +1,13 @@
 package com.stuSystem.manager.serviceImp;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
+import com.stuSystem.manager.mapper.ScoresMapper;
 import com.stuSystem.manager.mapper.StudentMapper;
+import com.stuSystem.manager.pojo.Scores;
+import com.stuSystem.manager.pojo.ScoresExample;
 import com.stuSystem.manager.pojo.other.myException.UserException;
 import com.stuSystem.manager.pojo.other.productService.ProductService;
 import com.stuSystem.manager.pojo.other.usercheck.StudentCheck;
@@ -22,12 +27,6 @@ public class StuServiceImp implements StuService {
     @Autowired
     private StudentMapper studentMapper;
 
-    /**
-     * 使用封装后的通用信息查询学生
-     * @param userInfo
-     * @return
-     * @throws Exception
-     */
     @Override
     public Student findStudent(UserInfo userInfo) throws Exception {
         StudentExample studentExample = new StudentExample();
@@ -45,12 +44,6 @@ public class StuServiceImp implements StuService {
         return null;
     }
 
-    /**
-     * 使用学号查询学生
-     * @param stuId
-     * @return
-     * @throws Exception
-     */
     @Override
     public Student findStudentByStuId(String stuId) throws Exception {
         StudentExample studentExample = new StudentExample();
@@ -152,8 +145,17 @@ public class StuServiceImp implements StuService {
 
     }
 
+    @Override
+    public boolean updateStuInfo(Student student) {
+        int flag = studentMapper.updateByPrimaryKey(student);
+        if (flag == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
-     * 用于测试
+     * 测试类
      * @param args
      */
     public static void main(String args[]){
@@ -163,6 +165,5 @@ public class StuServiceImp implements StuService {
             System.out.println(index);
             System.out.println(filename.substring(index+1));
         }
-
     }
 }

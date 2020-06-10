@@ -22,6 +22,10 @@
     <result column="stu_lastLogin" jdbcType="TIMESTAMP" property="stuLastlogin" />
     <result column="stu_regLogin" jdbcType="TIMESTAMP" property="stuReglogin" />
   </resultMap>
+  <resultMap id="DefineResultMap1" type="java.util.Map">
+    <id column="stu_id" jdbcType="VARCHAR" property="stuId" />
+    <result column="stu_name" jdbcType="VARCHAR" property="stuName" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbggenerated

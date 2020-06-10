@@ -16,7 +16,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
-  <!-- 加载监听器 -->
+  <!-- 加载spring容器启动监听器 -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

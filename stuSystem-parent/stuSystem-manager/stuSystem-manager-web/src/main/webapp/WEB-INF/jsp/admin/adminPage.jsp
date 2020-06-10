@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.stuSystem.manager.pojo.Teacher" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -20,13 +21,13 @@
         }
         #left{
             width:250px;
-            height:520px;
+            height:600px;
             background: #FFFFFF;
             border:2px solid #999999;
         }
         #right{
             width:740px;
-            height:520px;
+            height:600px;
             background: #FFFFFF;
             border:2px solid #999999;
             position:absolute;
@@ -75,7 +76,7 @@
         <h4>工号：${(User.user).getTeachId()}</h4><br><br>
         <h4>姓号：${(User.user).getTeachName()}</h4><br><br>
         <h4>联系邮箱：${(User.user).getTeachEmail()}</h4><br><br>
-        <h4>入职时间：${(User.user).teachEnsch}</h4><br><br>
+        <h4>入职时间：<fmt:formatDate value="${(User.user).teachEnsch}"/></h4><br><br>
     </div>
     <div id="right">
         <div style="text-align:center;">
@@ -89,21 +90,11 @@
         <div style="margin:5px;">
             <div class="navi">
                 <img src="<c:url value='/img/import2.png'/>" class="naviPic">
-                <a href="<c:url value='/admin/goStuImportUI.action'/>" id="two">单项导入学生信息</a>
+                <a href="<c:url value='/admin/goStuImportUI.action'/>" id="two">导入学生信息</a>
             </div>
             <div class="navi" style="float:right;margin-right:100px;">
                 <img src="<c:url value='/img/import2.png'/>" class="naviPic">
-                <a href="<c:url value='/admin/goTeaImporUi.action'/>" id="two">单项导入老师信息</a><br>
-            </div>
-            <div>
-                <div class="navi" >
-                    <img src="<c:url value='/img/import2.png'/>" class="naviPic">
-                    <a href="<c:url value='/admin/goStuImportUI.action'/>" id="two">批量导入学生信息</a>
-                </div>
-                <div class="navi" style="float:right;margin-right:100px;">
-                    <img src="<c:url value='/img/import2.png'/>" class="naviPic">
-                    <a href="<c:url value='/admin/goTeaImporUi.action'/>" id="two">批量导入老师信息</a>
-                </div>
+                <a href="<c:url value='/admin/goTeaImporUi.action'/>" id="two">导入老师信息</a><br>
             </div>
             <div style="magin:3px"><br>
                 <img src="<c:url value='/img/search.png'/>" style="vertical-align:middle;">
@@ -133,6 +124,20 @@
         <div class="navi">
             <img src="<c:url value='/img/fabu2.png'/>" class="naviPic">
             <a href="<c:url value='/admin/goApUI.action'/>" id="two">发布主页公告</a>
+        </div>
+        <div style="magin:3px"><br><br>
+            <img src="<c:url value='/img/kc.png'/>" style="vertical-align:middle;">
+            <span style="font-weight:bold;font-size:15px">课程管理</span><hr/>
+        </div>
+        <div style="margin:5px;">
+            <div class="navi">
+                <img src="<c:url value='/img/kc2.png'/>" class="naviPic">
+                <a href="<c:url value='/admin/goNewCourseUI.action'/>" id="two">添加新课程</a>
+            </div>
+            <div class="navi" style="float:right;margin-right:100px;">
+                <img src="<c:url value='/img/kc2.png'/>" class="naviPic">
+                <a href="<c:url value='/admin/goNewClassUI.action'/>" id="two">开设课程</a><br>
+            </div>
         </div>
     </div>
 </div>

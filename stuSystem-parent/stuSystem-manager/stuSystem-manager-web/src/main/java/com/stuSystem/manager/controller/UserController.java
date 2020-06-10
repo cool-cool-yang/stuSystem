@@ -1,16 +1,15 @@
 package com.stuSystem.manager.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.stuSystem.manager.other.UserFactory;
+import com.stuSystem.manager.pojo.other.UserFactory;
 import com.stuSystem.manager.custpojo.UserInfo;
-import com.stuSystem.manager.other.UserEnum;
+import com.stuSystem.manager.pojo.other.UserEnum;
 import com.stuSystem.manager.pojo.Announce;
 import com.stuSystem.manager.pojo.Student;
 import com.stuSystem.manager.pojo.Teacher;
 import com.stuSystem.manager.service.AnnounceService;
 import com.stuSystem.manager.service.StuService;
 import com.stuSystem.manager.service.TeacherService;
-import com.stuSystem.tools.filesave.FileDealToLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 
 /**
  * 用户通用请求处理器

@@ -4,6 +4,7 @@ import com.stuSystem.manager.custpojo.ExcelUser;
 import com.stuSystem.manager.custpojo.UserInfo;
 import com.stuSystem.manager.mapper.TeacherMapper;
 import com.stuSystem.manager.pojo.other.myException.UserException;
+import com.stuSystem.manager.pojo.other.productService.ProductService;
 import com.stuSystem.manager.pojo.other.usercheck.TeacherCheck;
 import com.stuSystem.manager.pojo.other.usercheck.UserCheck;
 import com.stuSystem.manager.pojo.Teacher;
@@ -73,21 +74,34 @@ public class TeacherServiceImp implements TeacherService {
 
     @Override
     public ExcelUser<Teacher> insertTeachTable(MultipartFile mFile) throws Exception {
-        UserCheck<Teacher> userCheck = new TeacherCheck<>();
-        ExcelUser<Teacher> studentExcelUser = userCheck.checkManyItems(mFile,Teacher.class);
+        UserCheck<Teacher> check= new TeacherCheck<>();
+        ExcelUser<Teacher> teacherExcelUser = new ExcelUser<>();
         List<Teacher> stuList = new ArrayList<>();
-        for(Teacher teacher:studentExcelUser.getSuccessDeal()){
-            if(findTeacherByTeachId(teacher.getTeachId())==null){
-                int flag = teacherMapper.insert(teacher);
-                if(flag==0){
-                    stuList.add(teacher);
+        ProductService service =  check.sumbit(mFile.getInputStream());
+        System.out.println(service.isEmpty()+","+service.isfinish());
+        int successCount=0;
+
+        while(service.isfinish() || !service.isEmpty()){
+            System.out.println("开始获取数据");
+            Teacher tea= (Teacher)service.get();
+            if(tea!=null){
+                successCount++;
+                if(findTeacherByTeachId(tea.getTeachId())==null){
+                    int flag = teacherMapper.insertSelective(tea);
+                    if(flag==0){
+                        stuList.add(tea);
+                    }
+                }else{
+                    stuList.add(tea);
                 }
-            }else{
-                stuList.add(teacher);
             }
         }
-        studentExcelUser.setFailImport(stuList);
-        return studentExcelUser;
+        System.out.println("插入已经结束");
+        teacherExcelUser.setTotal(service.totoal());
+        teacherExcelUser.setSuccessCount(successCount);
+        teacherExcelUser.setFailImport(stuList);
+        return teacherExcelUser;
+
     }
 
     @Override

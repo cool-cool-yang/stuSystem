@@ -1,5 +1,6 @@
 package com.stuSystem.manager.service;
 
+import com.stuSystem.manager.custpojo.CstmTc;
 import com.stuSystem.manager.pojo.Teachcourse;
 
 import java.util.List;
@@ -31,4 +32,5 @@ public interface TeacherCourseService {
      * @return
      */
     boolean inserOneItemforTc(String tcId,String stuId);
+
 }

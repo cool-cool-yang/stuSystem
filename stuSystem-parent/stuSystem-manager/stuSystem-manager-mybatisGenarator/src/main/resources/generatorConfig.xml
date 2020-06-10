@@ -42,6 +42,10 @@
 	<table tableName="teacher"></table>
     <table tableName="student"></table>
     <table tableName="announce"></table>
+    <table tableName="courser"></table>
+    <table tableName="teachcourse"></table>
+    <table tableName="scores"></table>
+    <table tableName="class"></table>
 	<!--<table tableName="usernet"></table>
 
 	<table tableName="country"></table>
@@ -55,6 +59,5 @@
       <ignoreColumn column="FRED" />
       <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
     </table> -->
-
   </context>
 </generatorConfiguration>

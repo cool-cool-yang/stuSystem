@@ -1,5 +1,6 @@
 package com.stuSystem.manager.serviceImp;
 
+import com.stuSystem.manager.custpojo.CstmTc;
 import com.stuSystem.manager.mapper.ScoresMapper;
 import com.stuSystem.manager.mapper.TeachcourseMapper;
 import com.stuSystem.manager.pojo.Scores;
